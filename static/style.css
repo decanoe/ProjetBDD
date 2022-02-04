@@ -2,8 +2,9 @@
 
 .nav-links{
     display: flex;
-    justify-content: space-around;
-    width: 50%;
+    width: 1000px;
+    justify-content: space-between;
+    margin: auto;
 }
 
 .nav-links li{
@@ -14,22 +15,23 @@
     color: #fff;
     text-decoration: none;
     letter-spacing: 3px;
-    font-weight: bold;
     font-size: 14px;
     padding: 5px;
     border-radius: 5px;
+    padding: 15px;
+    margin: auto;
 }
 
 .nav-links li a:hover{
-	background-color:white;
-	color:black;
+	background-color:#22577A;
+	color:white;
 	transition:background-color, color;
     transition-duration:0.2s,0.2s;
     cursor: pointer;
 }
 .nav-links li a:not(:hover){
-	background-color:black;
-	color:white;
+	background-color:white;
+	color:#22577A;
 	transition:background-color, color;
 	transition-duration:0.2s,0.2s;
 }
