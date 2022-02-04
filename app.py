@@ -1,27 +1,19 @@
 import sqlite3
 from sqlite3 import Error
-from tracemalloc import start
-from django.shortcuts import render
-from flask import *
-app = Flask(__name__)
+from flask import Flask
 
-@app.route('/')
-def home():
-	print("launched")
-	return render_template("index.html")
+def create_app():
+    app = Flask(__name__)
 
-if __name__ == "__main__":
-	app.run()
+    # blueprint for auth routes in our app
+    from auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint)
 
-# tests
+    # blueprint for non-auth parts of app
+    from main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
 
-# blueprint for auth routes in our app
-from .auth import auth as auth_blueprint
-app.register_blueprint(auth_blueprint)
-
-# blueprint for non-auth parts of app
-from .main import main as main_blueprint
-app.register_blueprint(main_blueprint)
+    return app
 
 def startConnection(path):
     connect = None
