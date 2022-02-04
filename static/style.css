@@ -1,10 +1,37 @@
+/*-----------Logo-------------*/
+
+.sticky-header{
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    min-height: 13vh;
+    font-family: 'Poppins', sans-serif;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0%;
+    z-index: 3;
+}
+
+
+.logo a{
+    color: #22577A;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+    font-style: bold;
+    text-decoration: none;
+}
+
+
 /*------------Animation nav------------*/
 
 .nav-links{
     display: flex;
-    width: 1000px;
+    width: 60%;
     justify-content: space-between;
-    margin: auto;
+    margin-inline: auto;
 }
 
 .nav-links li{
