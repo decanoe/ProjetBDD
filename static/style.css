@@ -1,1 +1,35 @@
+/*------------Animation nav------------*/
 
+.nav-links{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.nav-links li{
+    list-style: none;
+}
+
+.nav-links a{
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.nav-links li a:hover{
+	background-color:white;
+	color:black;
+	transition:background-color, color;
+    transition-duration:0.2s,0.2s;
+    cursor: pointer;
+}
+.nav-links li a:not(:hover){
+	background-color:black;
+	color:white;
+	transition:background-color, color;
+	transition-duration:0.2s,0.2s;
+}
