@@ -10,18 +10,18 @@ def home():
 	print("launched")
 	return render_template("index.html")
 
-@app.route('/forum')
-def forum():
-	return render_template("forum.html")
-
-@app.route('/account')
-def account():
-	return render_template("account.html")
-
 if __name__ == "__main__":
 	app.run()
 
 # tests
+
+# blueprint for auth routes in our app
+from .auth import auth as auth_blueprint
+app.register_blueprint(auth_blueprint)
+
+# blueprint for non-auth parts of app
+from .main import main as main_blueprint
+app.register_blueprint(main_blueprint)
 
 def startConnection(path):
     connect = None
