@@ -37,3 +37,6 @@ cur.execute('SELECT * FROM users')
 
 for row in cur.fetchall():
 	print(row)'''
+
+if __name__ == "__main__":
+    create_app().run(debug=True)
