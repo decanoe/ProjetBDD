@@ -21,7 +21,6 @@ def account():
 if __name__ == "__main__":
 	app.run()
 
-
 # tests
 
 def startConnection(path):
