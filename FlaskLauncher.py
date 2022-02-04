@@ -1,6 +1,7 @@
 import sqlite3
 from sqlite3 import Error
 from tracemalloc import start
+from django.shortcuts import render
 from flask import *
 app = Flask(__name__)
 
@@ -9,10 +10,14 @@ def home():
 	print("launched")
 	return render_template("index.html")
 
-@app.route('/Forum')
+@app.route('/forum')
 def forum():
 	return render_template("forum.html")
-	
+
+@app.route('/account')
+def account():
+	return render_template("account.html")
+
 if __name__ == "__main__":
 	app.run()
 
