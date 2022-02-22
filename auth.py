@@ -10,7 +10,7 @@ def loginMethod():
     login = request.form['login']
     password = request.form['password']
     print(login, password)
-    return 'Connected as %s.<a href="/">Back Home</a>' % (login)
+    return render_template("profile.html")
 
 @auth.route('/signup')
 def signup():
