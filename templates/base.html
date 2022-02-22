@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}{% endblock %} - My Webpage</title>
+    {% endblock %}
+</head>
+<body>
+    <div class="logo">
+        <a href="/"><h4>Citation Prof</h4></a>
+    </div>
+    <nav class="sticky-header">
+        <ul class="nav-links">
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/forum">Forum</a></li>
+            <li><a href="/login">Se connecter</a></li>
+            <li><a href="/profile">Mon compte</a></li>
+            <li><a href="/signup">Créer Mon Compte</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div id="footer">
+      {% block footer %}
+      &copy; Erwan LE GRAND, Sarah BIDAULT, Noé DE CAESTECKER - Tous droits réservés
+      {% endblock %}
+    </div>
+</body>
+</html>

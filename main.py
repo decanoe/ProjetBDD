@@ -9,3 +9,7 @@ def index():
 @main.route('/profile')
 def profile():
     return render_template("profile.html")
+
+@main.route('/forum')
+def forum():
+    return render_template("forum.html")

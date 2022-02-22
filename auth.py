@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from flask import Blueprint, render_template
 
 auth = Blueprint('auth', __name__)
@@ -13,4 +12,4 @@ def signup():
 
 @auth.route('/logout')
 def logout():
-    return render_template("logout.html")
+    return "logout"
