@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-		    <meta name="viewport"/>
-        <meta charset="utf-8"/>
-        <title>Citation Prof</title>
-		    <!-- <link rel="icon" type="image/png" href="https://vignette.wikia.nocookie.net/pokemon-prisme/images/3/35/Filet_Ball.png/revision/latest?cb=20201112190359&path-prefix=fr" /> -->
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
-		    <script src="{{ url_for('static', filename='script.js') }}"></script>
-    </head>
+  {% extends "base.html" %}
     <body>
-      {% extends "base.html" %}
       {% block content %}
       <script src="{{url_for('static',filename='js/app.js')}}"></script>
-      <h1>Ceci est la page d'accueil</h1>
+      <h1>Bienvenue sur le forum Cinerum</h1>
+      <p1>Ici sera répertorié toutes les critiques, présentation et avis des films les plus récents. Chacun pourra partager son avis dans le respects d'autruits et dans un calme olympien.</p1>
       <table>
         <!-- Table headers -->
         <thead>
