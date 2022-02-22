@@ -5,12 +5,14 @@ auth = Blueprint('auth', __name__)
 @auth.route('/login')
 def login():
     return render_template("login.html")
+
 @auth.route('/loginMethod', methods=['POST'])
 def loginMethod():
     login = request.form['login']
     password = request.form['password']
     print(login, password)
-    return render_template("profile.html")
+    text = "Connecter en tant que %s" % (login)
+    return render_template("profile.html", message = text)
 
 @auth.route('/signup')
 def signup():
