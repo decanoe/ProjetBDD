@@ -11,7 +11,7 @@ def loginMethod():
     login = request.form['login']
     password = request.form['password']
     print(login, password)
-    text = "Connected as %s" % (login)
+    text = "Connecter en tant que %s" % (login)
     return render_template("profile.html", message = text)
 
 @auth.route('/signup')
