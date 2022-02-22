@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request
-from numpy import require
 
 auth = Blueprint('auth', __name__)
 
