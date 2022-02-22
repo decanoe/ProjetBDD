@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request
+from numpy import require
 
 auth = Blueprint('auth', __name__)
 
@@ -11,7 +12,17 @@ def loginMethod():
     login = request.form['login']
     password = request.form['password']
     print(login, password)
-    text = "Connecter en tant que %s" % (login)
+    text = "Connecté en tant que %s" % (login)
+    return render_template("profile.html", message = text)
+
+@auth.route('/signup', methods=['POST'])
+def signupMethod():
+    login = request.form['login']
+    password = request.form['password']
+    email = request.form['email']
+    age = request.form['age']
+    print(login, password, email, age)
+    text = "Connecté en tant que %s" % (login)
     return render_template("profile.html", message = text)
 
 @auth.route('/signup')
