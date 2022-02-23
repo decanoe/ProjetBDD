@@ -27,8 +27,8 @@ def signupMethod():
     email = request.form['email']
     age = request.form['age']
     text = ""
-    connexion = startConnection("database.db")
-    cur = connexion.cursor()
+    connection = startConnection("database.db")
+    cur = connection.cursor()
     cur.execute('select login from users')
     list_login = cur.fetchone()
     tuple(list_login)
