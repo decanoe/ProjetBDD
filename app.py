@@ -15,7 +15,7 @@ def create_app():
 
     return app
 
-def startConnexion(path):
+def startConnection(path):
     connect = None
     try:
         connect = sqlite3.connect(path)
@@ -24,7 +24,7 @@ def startConnexion(path):
 
     return connect
 
-connexion = startConnexion("database.db")
+connection = startConnection("database.db")
 
 """x
 cur.execute('CREATE TABLE users ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "login" TEXT NOT NULL, "password" TEXT NOT NULL, "email" TEXT NOT NULL, "age" INTEGER NOT NULL)')

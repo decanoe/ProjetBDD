@@ -8,6 +8,8 @@ def index():
 
 @main.route('/profile')
 def profile():
+    from auth import connectedAs as user
+    print(user)
     return render_template("profile.html")
 
 @main.route('/forum')
