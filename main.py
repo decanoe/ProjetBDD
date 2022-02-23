@@ -12,4 +12,6 @@ def profile():
 
 @main.route('/forum')
 def forum():
+    from auth import connectedAs as user
+    print(user)
     return render_template("forum.html")

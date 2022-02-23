@@ -15,7 +15,7 @@ def create_app():
 
     return app
 
-def startConnexion(path):
+def startConnection(path):
     connect = None
     try:
         connect = sqlite3.connect(path)
@@ -24,9 +24,9 @@ def startConnexion(path):
 
     return connect
 
-connexion = startConnexion("database.db")
+connexion = startConnection("database.db")
 
-"""x
+"""
 cur.execute('CREATE TABLE users ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "login" TEXT NOT NULL, "password" TEXT NOT NULL, "email" TEXT NOT NULL, "age" INTEGER NOT NULL)')
 cur.execute('CREATE TABLE posts ("id_post" INTEGER PRIMARY KEY AUTOINCREMENT, "autor" INTEGER, "title" TEXT NOT NULL, "content" TEXT NOT NULL, FOREIGN KEY("autor") REFERENCES "users"("id"))')
 cur.execute('CREATE TABLE comments ("id_comment" INTEGER PRIMARY KEY AUTOINCREMENT, "post" INTEGER, "user" INTEGER, "content" TEXT NOT NULL, FOREIGN KEY("user") REFERENCES "users"("id"), FOREIGN KEY("post") REFERENCES "posts"("id_post"))')
