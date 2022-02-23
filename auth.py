@@ -1,7 +1,6 @@
-from glob import glob
 from flask import Blueprint, render_template, request
 import sqlite3
-from app import startConnection
+from app import startConnexion
 
 auth = Blueprint('auth', __name__)
 
@@ -16,8 +15,6 @@ def loginMethod():
     login = request.form['login']
     password = request.form['password']
     text = "Connecté en tant que %s" % (login)
-    global connectedAs
-    connectedAs = login
     return render_template("profile.html", message = text)
 
 @auth.route('/signupMethod', methods=['POST'])
@@ -27,8 +24,8 @@ def signupMethod():
     email = request.form['email']
     age = request.form['age']
     text = ""
-    connection = startConnection("database.db")
-    cur = connection.cursor()
+    connexion = startConnexion("database.db")
+    cur = connexion.cursor()
     cur.execute('select login from users')
     list_login = cur.fetchone()
     tuple(list_login)
