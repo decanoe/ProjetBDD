@@ -24,8 +24,6 @@ def startConnection(path):
 
     return connect
 
-connection = startConnection("database.db")
-
 """x
 cur.execute('CREATE TABLE users ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "login" TEXT NOT NULL, "password" TEXT NOT NULL, "email" TEXT NOT NULL, "age" INTEGER NOT NULL)')
 cur.execute('CREATE TABLE posts ("id_post" INTEGER PRIMARY KEY AUTOINCREMENT, "autor" INTEGER, "title" TEXT NOT NULL, "content" TEXT NOT NULL, FOREIGN KEY("autor") REFERENCES "users"("id"))')
