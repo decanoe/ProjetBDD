@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request
+from app import startConnection
 
 auth = Blueprint('auth', __name__)
 
@@ -10,9 +11,13 @@ def login():
 def loginMethod():
     login = request.form['login']
     password = request.form['password']
-    print(login, password)
-    text = "Connecter en tant que %s" % (login)
-    return render_template("profile.html", message = text)
+    cur = startConnection("database.db").cursor()
+    cur.execute('SELECT login, password FROM users')
+    for row in cur.fetchall():
+	    if row == (login, password):
+                print(login, password)
+                text = "Connecté en tant que %s" % (login)
+                return render_template("profile.html", message = text)
 
 @auth.route('/signup')
 def signup():

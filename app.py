@@ -32,6 +32,8 @@ cur = connection.cursor()
 #cur.execute('CREATE TABLE comments ("id_comment" INTEGER, "post" INTEGER, "user" INTEGER, "content" TEXT NOT NULL, PRIMARY KEY("id_comment"), FOREIGN KEY("user") REFERENCES "users"("id"), FOREIGN KEY("post") REFERENCES "posts"("id_post"))')
 #cur.execute('CREATE TABLE users ("id" INTEGER, "pseudo" TEXT NOT NULL, "password" TEXT NOT NULL, "email" TEXT NOT NULL, "age" INTEGER NOT NULL, PRIMARY KEY("id"))')
 #cur.execute('DROP TABLE users')
+#cur.execute('ALTER TABLE users RENAME COLUMN pseudo TO login')
+cur.execute('INSERT INTO users VALUES(0, "totoro49", "3665", "nop", 16)')
 '''
 cur.execute('SELECT * FROM users')
 
