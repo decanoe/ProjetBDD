@@ -4,6 +4,8 @@ from app import startConnexion
 
 auth = Blueprint('auth', __name__)
 
+connectedAs = None
+
 @auth.route('/login')
 def login():
     return render_template("login.html")
