@@ -27,11 +27,9 @@ def startConnection(path):
 connection = startConnection("database.db")
 
 cur = connection.cursor()
-
-#cur.execute('CREATE TABLE posts ("id_post" INTEGER, "autor" INTEGER, "title" TEXT NOT NULL, "content" TEXT NOT NULL, PRIMARY KEY("id_post"), FOREIGN KEY("autor") REFERENCES "users"("id"))')
-#cur.execute('CREATE TABLE comments ("id_comment" INTEGER, "post" INTEGER, "user" INTEGER, "content" TEXT NOT NULL, PRIMARY KEY("id_comment"), FOREIGN KEY("user") REFERENCES "users"("id"), FOREIGN KEY("post") REFERENCES "posts"("id_post"))')
-#cur.execute('CREATE TABLE users ("id" INTEGER, "pseudo" TEXT NOT NULL, "password" TEXT NOT NULL, "email" TEXT NOT NULL, "age" INTEGER NOT NULL, PRIMARY KEY("id"))')
-#cur.execute('DROP TABLE users')
+cur.execute('CREATE TABLE users ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "login" TEXT NOT NULL, "password" TEXT NOT NULL, "email" TEXT NOT NULL, "age" INTEGER NOT NULL)')
+cur.execute('CREATE TABLE posts ("id_post" INTEGER PRIMARY KEY AUTOINCREMENT, "autor" INTEGER, "title" TEXT NOT NULL, "content" TEXT NOT NULL, FOREIGN KEY("autor") REFERENCES "users"("id"))')
+cur.execute('CREATE TABLE comments ("id_comment" INTEGER PRIMARY KEY AUTOINCREMENT, "post" INTEGER, "user" INTEGER, "content" TEXT NOT NULL, FOREIGN KEY("user") REFERENCES "users"("id"), FOREIGN KEY("post") REFERENCES "posts"("id_post"))')
 '''
 cur.execute('SELECT * FROM users')
 
