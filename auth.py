@@ -14,18 +14,18 @@ def login():
 def loginMethod():
     login = request.form['login']
     password = request.form['password']
-    text = "Connecté en tant que %s" % (login)
 
     connection = startConnection("database.db")
     cur = connection.cursor()
-    cur.execute('select login, password from users')
-    list_user = cur.fetchone()
-    print(list_user)
+    cur.execute('SELECT * FROM users WHERE login = "' + login + '" AND password = "' + password + '";')
+    exist = (cur.fetchone() == None)
     connection.close()
-
-    global connectedAs
-    connectedAs = login
-    return render_template("profile.html", message = text)
+    if not(exist):
+        global connectedAs
+        connectedAs = login
+        return render_template("profile.html", message = "Connecté en tant que %s" % (login))
+    else:
+        return render_template("login.html", message = "")
 
 @auth.route('/signupMethod', methods=['POST'])
 def signupMethod():
