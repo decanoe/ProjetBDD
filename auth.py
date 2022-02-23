@@ -25,7 +25,7 @@ def loginMethod():
         connectedAs = login
         return render_template("profile.html", message = "Connecté en tant que %s" % (login))
     else:
-        return render_template("login.html", message = "")
+        return render_template("login.html", message = "Identifiant ou mot de passe incorrect")
 
 @auth.route('/signupMethod', methods=['POST'])
 def signupMethod():
