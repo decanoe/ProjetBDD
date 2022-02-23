@@ -4,6 +4,8 @@ from app import startConnexion
 
 auth = Blueprint('auth', __name__)
 
+connectedAs = None
+
 @auth.route('/login')
 def login():
     return render_template("login.html")
@@ -30,7 +32,7 @@ def signupMethod():
     cur.execute('select email from users')
     list_email = cur.fetchone()
     tuple(list_email)
-    if len(login)==0 or len(password)==0 or len(email)==0 or len(age)==0:
+    if login == "" or password == "" or email == "" or age == "":
         text = "Veuillez remplir tous les formulaires afin de créer votre compte"
         return render_template("signup.html", message = text)
     elif len(login)>30:
