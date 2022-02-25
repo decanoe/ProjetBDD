@@ -75,4 +75,4 @@ def signupMethod():
 def logout():
     global connectedAs
     connectedAs = None
-    return render_template("login.html")
+    return render_template("login.html", connectedAs = None)
