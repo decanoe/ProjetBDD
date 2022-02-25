@@ -52,7 +52,7 @@ def signupMethod():
     elif len(login) > 30:
         text ="Votre login est trop long (max 30 caractères). "
         return render_template("signup.html", message = text)
-    elif cur.execute('SELECT login FROM users WHERE login = "' + login + '";').fetchone != None:
+    elif cur.execute('SELECT login FROM users WHERE login = "' + login + '";').fetchone() != None:
         text = "Ce pseudonyme est déjà utilisé"
         print('DEJA UTILISE')
         return render_template("signup.html", message = text)
@@ -63,12 +63,13 @@ def signupMethod():
         return render_template("signup.html", message = text)
     
     # --- email ---
-    elif cur.execute('SELECT email FROM users WHERE email = "' + email + '";').fetchone != None:
+    elif cur.execute('SELECT email FROM users WHERE email = "' + email + '";').fetchone() != None:
         text = "Cette adresse email est déjà utilisée"
         return render_template("signup.html", message = text)
     
     else:
         cur.execute("INSERT INTO users (login,password,email,age) VALUES ('" + login + "','" + password + "','" + email + "'," + str(age) + ");")
+        connection.commit()
         connection.close()
         text = "Votre compte à bien été créer. Vous êtes connecté en tant que %s" % (login)
         return render_template("profile.html", message = text)
