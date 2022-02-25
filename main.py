@@ -1,5 +1,10 @@
 from flask import Blueprint, render_template
 from app import startConnection
+<<<<<<< HEAD
+=======
+from pythonClass.post import Post
+
+>>>>>>> b44f00aa55a977d059c3d74a8c3c2128cc881c24
 main = Blueprint('main', __name__)
 
 @main.route('/')
@@ -14,7 +19,14 @@ def profile():
 
 @main.route('/forum')
 def forum():
-    return render_template("forum.html")
+    connection = startConnection("database.db")
+    cursor = connection.cursor()
+
+    list_post = []
+    for post in cursor.execute("SELECT * FROM posts").fetchall():
+        list_post.append(Post(post[0], post[1], post[2]))
+    
+    return render_template("forum.html", list_post = list_post)
 
 @main.route('/resetData', methods=['POST'])
 def resetData():

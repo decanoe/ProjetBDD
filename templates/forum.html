@@ -9,16 +9,15 @@
         <!-- Table headers -->
         <thead>
             <tr>
-                <th>Nom du pokémon</th>
-                <th>Type du pokémon</th>
-                <th>Niveau d'évolution</th>
-                <th>Génération</th>
+                <th>author</th>
+                <th>title</th>
+                <th>content</th>
             </tr>
         </thead>
         {% for post in list_post %}
         <tr>
-            <td>{{post.title}}</td>
             <td>{{post.author}}</td>
+            <td>{{post.title}}</td>
             <td>{{post.content}}</td>
         {% endfor %}
         </tr>
