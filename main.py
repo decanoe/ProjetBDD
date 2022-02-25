@@ -20,7 +20,7 @@ def forum():
     cursor = connection.cursor()
 
     list_post = []
-    for post in cursor.execute("SELECT * FROM posts").fetchall():
+    for post in cursor.execute("SELECT author, title, content FROM posts").fetchall():
         list_post.append(Post(post[0], post[1], post[2]))
     
     return render_template("forum.html", list_post = list_post)
