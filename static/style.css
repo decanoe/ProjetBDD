@@ -1,26 +1,18 @@
 /*-----------Mise en forme page----------*/
-
-html {
-    background-color: #adb5bd;
-    color: #000;
-}
-
 body {
-    width: 1500px;
-    margin: 20px auto;
     background-color: #848c94;
-    padding: 0 200px 20px 20px;
     border: 5px solid #8a2020;
+    border-radius: 10px;
 }
 
-footer {
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    background-color: #45a1ff;
-    color: #fff;
+#footer{
+    margin: auto;
+    font-family: 'Poppins', sans-serif;
+    position: -webkit-sticky;
+    position: absolute;
+    bottom: 0%;
+    z-index: 3;
 }
-
 /*-----------Logo-------------*/
 
 .sticky-header{
@@ -33,6 +25,7 @@ footer {
     position: sticky;
     top: 0%;
     z-index: 3;
+    background-color: #848c94;
 }
 
 
