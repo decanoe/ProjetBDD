@@ -1,6 +1,4 @@
-from tracemalloc import stop
 from flask import Blueprint, render_template, request
-import sqlite3
 from app import startConnection
 
 auth = Blueprint('auth', __name__)
