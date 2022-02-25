@@ -25,7 +25,7 @@ def loginMethod():
         connectedAs = login
         return render_template("profile.html", message = "Connecté en tant que %s" % (login))
     else:
-        return render_template("login.html", message = "")
+        return render_template("login.html", message = "Identifiant ou mot de passe incorrect")
 
 @auth.route('/signupMethod', methods=['POST'])
 def signupMethod():
@@ -40,7 +40,6 @@ def signupMethod():
     list_login = cur.fetchone()
     cur.execute('select email from users')
     list_email = cur.fetchone()
-    connection.close()
 
     if login == "" or password == "" or email == "" or age == "":
         text = "Veuillez remplir tous les formulaires afin de créer votre compte"
@@ -67,6 +66,9 @@ def signupMethod():
         text = "Vous devez indiquez un âge valide. "
         return render_template("signup.html", message = text)
     else:
+        cur.execute("INSERT INTO users (login,password,email,age) VALUES ('" + login + "','" + password + "','" + email + "'," + str(age) + ");")
+        connection.commit()
+        connection.close()
         text = "Votre compte à bien été créer. Vous êtes connecté en tant que %s" % (login)
         return render_template("profile.html", message = text)
 
