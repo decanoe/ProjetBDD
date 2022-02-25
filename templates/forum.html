@@ -5,6 +5,24 @@
 <body>
     {% block content %}
     <h1>Ceci est la page forum</h1>
+    <table>
+        <!-- Table headers -->
+        <thead>
+            <tr>
+                <th>Nom du pokémon</th>
+                <th>Type du pokémon</th>
+                <th>Niveau d'évolution</th>
+                <th>Génération</th>
+            </tr>
+        </thead>
+        {% for post in list_post %}
+        <tr>
+            <td>{{post.title}}</td>
+            <td>{{post.author}}</td>
+            <td>{{post.content}}</td>
+        {% endfor %}
+        </tr>
+    </table>
     {% endblock %}
 </body>
 </html>
