@@ -1,3 +1,26 @@
+/*-----------Mise en forme page----------*/
+
+html {
+    background-color: #adb5bd;
+    color: #000;
+}
+
+body {
+    width: 1500px;
+    margin: 20px auto;
+    background-color: #848c94;
+    padding: 0 200px 20px 20px;
+    border: 5px solid #8a2020;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    background-color: #45a1ff;
+    color: #fff;
+}
+
 /*-----------Logo-------------*/
 
 .sticky-header{
@@ -14,7 +37,7 @@
 
 
 .logo a{
-    color: #22577A;
+    color: #03071E;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     text-transform: uppercase;
@@ -39,7 +62,7 @@
 }
 
 .nav-links a{
-    color: #fff;
+    color: #6A040F;
     text-decoration: none;
     letter-spacing: 3px;
     font-size: 14px;
@@ -50,15 +73,15 @@
 }
 
 .nav-links li a:hover{
-	background-color:#22577A;
-	color:white;
+	background-color:#b63131;
+	color:#adb5bd;
 	transition:background-color, color;
-    transition-duration:0.2s,0.2s;
+    transition-duration:0.6s,0.6s;
     cursor: pointer;
 }
 .nav-links li a:not(:hover){
-	background-color:white;
-	color:#22577A;
+	background-color:#03071E;
+	color:#adb5bd;
 	transition:background-color, color;
-	transition-duration:0.2s,0.2s;
+	transition-duration:0.6s,0.6s;
 }
