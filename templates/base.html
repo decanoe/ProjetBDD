@@ -10,7 +10,13 @@
 <body>
     <div class="header">
         {% if connectedAs != None %}
-        <a href="/profile" id="user">{{connectedAs}}</a>
+        <div class="icon">
+            <div id="account">
+                <a href="/profile"><img src="https://img.icons8.com/ios-glyphs/30/000000/guest-male.png"/></a>
+                <a href="/profile" id="user">{{connectedAs}}</a>
+            </div>
+            <a href="/logout" id="logout"><img src="https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/000000/external-log-out-user-interface-kmg-design-detailed-outline-kmg-design.png" width="30" height="30"/></a>
+        </div>
         {% endif %}
         <div class="logo">
             <a href="/"><h4>Cinerum</h4></a>
