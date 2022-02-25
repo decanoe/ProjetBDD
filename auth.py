@@ -1,3 +1,4 @@
+from tracemalloc import stop
 from flask import Blueprint, render_template, request
 import sqlite3
 from app import startConnection
@@ -53,6 +54,7 @@ def signupMethod():
         return render_template("signup.html", message = text)
     elif cur.execute('SELECT login FROM users WHERE login = "' + login + '";').fetchone != None:
         text = "Ce pseudonyme est déjà utilisé"
+        print('DEJA UTILISE')
         return render_template("signup.html", message = text)
     
     # --- password ---
