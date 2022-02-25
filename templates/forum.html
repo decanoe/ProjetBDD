@@ -5,6 +5,23 @@
 <body>
     {% block content %}
     <h1>Ceci est la page forum</h1>
+    <table>
+        <!-- Table headers -->
+        <thead>
+            <tr>
+                <th>author</th>
+                <th>title</th>
+                <th>content</th>
+            </tr>
+        </thead>
+        {% for post in list_post %}
+        <tr>
+            <td>{{post.author}}</td>
+            <td>{{post.title}}</td>
+            <td>{{post.content}}</td>
+        {% endfor %}
+        </tr>
+    </table>
     {% endblock %}
 </body>
 </html>

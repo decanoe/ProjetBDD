@@ -1,6 +1,8 @@
+from glob import glob
+from tracemalloc import stop
 from flask import Blueprint, render_template, request
 import sqlite3
-from app import startConnexion
+from app import startConnection
 
 auth = Blueprint('auth', __name__)
 
@@ -14,8 +16,23 @@ def login():
 def loginMethod():
     login = request.form['login']
     password = request.form['password']
-    text = "Connecté en tant que %s" % (login)
-    return render_template("profile.html", message = text)
+
+    connection = startConnection("database.db")
+    cur = connection.cursor()
+    cur.execute('SELECT * FROM users WHERE login = "' + login + '" AND password = "' + password + '";')
+    exist = (cur.fetchone() == None)
+    connection.close()
+    if not(exist):
+        global connectedAs
+        connectedAs = login
+        return render_template("profile.html", message = "Connecté en tant que %s" % (login))
+    else:
+        return render_template("login.html", message = "Identifiant ou mot de passe incorrect")
+
+
+@auth.route('/signup')
+def signup():
+    return render_template("signup.html")
 
 @auth.route('/signupMethod', methods=['POST'])
 def signupMethod():
@@ -23,47 +40,43 @@ def signupMethod():
     password = request.form['password']
     email = request.form['email']
     age = request.form['age']
-    text = ""
-    connexion = startConnexion("database.db")
-    cur = connexion.cursor()
-    cur.execute('select login from users')
-    list_login = cur.fetchone()
-    tuple(list_login)
-    cur.execute('select email from users')
-    list_email = cur.fetchone()
-    tuple(list_email)
+
+    connection = startConnection("database.db")
+    cur = connection.cursor()
+
+    #Test for empty fields
     if login == "" or password == "" or email == "" or age == "":
         text = "Veuillez remplir tous les formulaires afin de créer votre compte"
         return render_template("signup.html", message = text)
-    elif len(login)>30:
-        text+="Votre login est trop long (max 30 caractères). "
+    
+    # --- Login Tests ---
+    elif len(login) > 30:
+        text ="Votre login est trop long (max 30 caractères). "
         return render_template("signup.html", message = text)
-    elif login in list_login:
-        text += "Ce pseudonyme est déjà utilisé"
+    elif cur.execute('SELECT login FROM users WHERE login = "' + login + '";').fetchone() != None:
+        text = "Ce pseudonyme est déjà utilisé"
+        print('DEJA UTILISE')
         return render_template("signup.html", message = text)
-    elif len(password)>30:
-        text+="Votre mot de passe est trop long (max 30 caractères). "
+    
+    # --- password ---
+    elif len(password) > 30:
+        text ="Votre mot de passe est trop long (max 30 caractères). "
         return render_template("signup.html", message = text)
-    elif len(password)<5:
-        text+="Votre mot de passe doit contenir au moins 5 caractères. "
+    
+    # --- email ---
+    elif cur.execute('SELECT email FROM users WHERE email = "' + email + '";').fetchone() != None:
+        text = "Cette adresse email est déjà utilisée"
         return render_template("signup.html", message = text)
-    elif "@" not in email or "." not in email:
-        text+="Votre email doit être valide. "
-        return render_template("signup.html", message = text)
-    elif email in list_email:
-        text += "Cette adresse email est déjà utilisée"
-        return render_template("signup.html", message = text)
-    elif not age.isnumeric():
-        text += "Vous devez indiquez un âge valide. "
-        return render_template("signup.html", message = text)
+    
     else:
+        cur.execute("INSERT INTO users (login,password,email,age) VALUES ('" + login + "','" + password + "','" + email + "'," + str(age) + ");")
+        connection.commit()
+        connection.close()
         text = "Votre compte à bien été créer. Vous êtes connecté en tant que %s" % (login)
         return render_template("profile.html", message = text)
 
-@auth.route('/signup')
-def signup():
-    return render_template("signup.html")
-
 @auth.route('/logout')
 def logout():
-    return "logout"
+    global connectedAs
+    connectedAs = None
+    return render_template("login.html")
