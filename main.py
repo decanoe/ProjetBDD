@@ -6,13 +6,14 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template("index.html")
+    from auth import connectedAs as user
+    return render_template("index.html", connectedAs = user)
 
 @main.route('/profile')
 def profile():
     from auth import connectedAs as user
     print(user)
-    return render_template("profile.html")
+    return render_template("profile.html", connectedAs = user)
 
 @main.route('/forum')
 def forum():
@@ -23,7 +24,8 @@ def forum():
     for post in cursor.execute("SELECT author, title, content FROM posts").fetchall():
         list_post.append(Post(post[0], post[1], post[2]))
     
-    return render_template("forum.html", list_post = list_post)
+    from auth import connectedAs as user
+    return render_template("forum.html", list_post = list_post, connectedAs = user)
 
 @main.route('/resetData', methods=['POST'])
 def resetData():
@@ -32,4 +34,6 @@ def resetData():
     cur.execute("DELETE FROM users")
     connection.commit()
     connection.close()
-    return render_template("index.html", message = "La table users a été reset")
+
+    from auth import connectedAs as user
+    return render_template("index.html", message = "La table users a été reset", connectedAs = user)
