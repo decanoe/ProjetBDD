@@ -26,9 +26,9 @@ def startConnection(path):
 
 #cur = startConnection("database.db").cursor()
 """
-cur.execute('DROP TABLE users')
+cur.execute('DROP TABLE posts')
 cur.execute('CREATE TABLE users ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "login" TEXT UNIQUE NOT NULL, "password" TEXT NOT NULL, "email" TEXT UNIQUE NOT NULL, "age" INTEGER NOT NULL)')
-cur.execute('CREATE TABLE posts ("id_post" INTEGER PRIMARY KEY AUTOINCREMENT, "autor" INTEGER, "title" TEXT NOT NULL, "content" TEXT NOT NULL, FOREIGN KEY("autor") REFERENCES "users"("id"))')
+cur.execute('CREATE TABLE posts ("id_post" INTEGER PRIMARY KEY AUTOINCREMENT, "author" INTEGER, "title" TEXT NOT NULL, "content" TEXT NOT NULL, FOREIGN KEY("author") REFERENCES "users"("id"))')
 cur.execute('CREATE TABLE comments ("id_comment" INTEGER PRIMARY KEY AUTOINCREMENT, "post" INTEGER, "user" INTEGER, "content" TEXT NOT NULL, FOREIGN KEY("user") REFERENCES "users"("id"), FOREIGN KEY("post") REFERENCES "posts"("id_post"))')
 """
 '''
