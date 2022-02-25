@@ -1,3 +1,4 @@
+from tracemalloc import stop
 from flask import Blueprint, render_template, request
 import sqlite3
 from app import startConnection
@@ -40,7 +41,6 @@ def signupMethod():
     list_login = cur.fetchone()
     cur.execute('select email from users')
     list_email = cur.fetchone()
-
     if login == "" or password == "" or email == "" or age == "":
         text = "Veuillez remplir tous les formulaires afin de créer votre compte"
         return render_template("signup.html", message = text)
@@ -49,6 +49,7 @@ def signupMethod():
         return render_template("signup.html", message = text)
     elif login in list_login:
         text = "Ce pseudonyme est déjà utilisé"
+        print('DEJA UTILISE')
         return render_template("signup.html", message = text)
     elif len(password)>30:
         text ="Votre mot de passe est trop long (max 30 caractères). "
