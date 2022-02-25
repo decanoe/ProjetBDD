@@ -1,4 +1,3 @@
-from glob import glob
 from tracemalloc import stop
 from flask import Blueprint, render_template, request
 import sqlite3
