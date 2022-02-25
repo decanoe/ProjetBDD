@@ -1,3 +1,4 @@
+from glob import glob
 from tracemalloc import stop
 from flask import Blueprint, render_template, request
 import sqlite3
@@ -76,4 +77,6 @@ def signupMethod():
 
 @auth.route('/logout')
 def logout():
-    return "logout"
+    global connectedAs
+    connectedAs = None
+    return render_template("login.html")
