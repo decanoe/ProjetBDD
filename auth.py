@@ -7,7 +7,7 @@ connectedAs = None
 
 @auth.route('/login')
 def login():
-    return render_template("login.html")
+    return render_template("login.html", connectedAs = connectedAs)
 
 @auth.route('/loginMethod', methods=['POST'])
 def loginMethod():
@@ -22,14 +22,14 @@ def loginMethod():
     if not(exist):
         global connectedAs
         connectedAs = login
-        return render_template("profile.html", message = "Connecté en tant que %s" % (login))
+        return render_template("profile.html", message = "Connecté en tant que %s" % (login), connectedAs = connectedAs)
     else:
-        return render_template("login.html", message = "Identifiant ou mot de passe incorrect")
+        return render_template("login.html", message = "Identifiant ou mot de passe incorrect", connectedAs = connectedAs)
 
 
 @auth.route('/signup')
 def signup():
-    return render_template("signup.html")
+    return render_template("signup.html", connectedAs = connectedAs)
 
 @auth.route('/signupMethod', methods=['POST'])
 def signupMethod():
@@ -44,33 +44,32 @@ def signupMethod():
     #Test for empty fields
     if login == "" or password == "" or email == "" or age == "":
         text = "Veuillez remplir tous les formulaires afin de créer votre compte"
-        return render_template("signup.html", message = text)
+        return render_template("signup.html", message = text, connectedAs = connectedAs)
     
     # --- Login Tests ---
     elif len(login) > 30:
         text ="Votre login est trop long (max 30 caractères). "
-        return render_template("signup.html", message = text)
+        return render_template("signup.html", message = text, connectedAs = connectedAs)
     elif cur.execute('SELECT login FROM users WHERE login = "' + login + '";').fetchone() != None:
         text = "Ce pseudonyme est déjà utilisé"
         print('DEJA UTILISE')
-        return render_template("signup.html", message = text)
+        return render_template("signup.html", message = text, connectedAs = connectedAs)
     
     # --- password ---
     elif len(password) > 30:
         text ="Votre mot de passe est trop long (max 30 caractères). "
-        return render_template("signup.html", message = text)
+        return render_template("signup.html", message = text, connectedAs = connectedAs)
     
     # --- email ---
     elif cur.execute('SELECT email FROM users WHERE email = "' + email + '";').fetchone() != None:
         text = "Cette adresse email est déjà utilisée"
-        return render_template("signup.html", message = text)
+        return render_template("signup.html", message = text, connectedAs = connectedAs)
     
     else:
         cur.execute("INSERT INTO users (login,password,email,age) VALUES ('" + login + "','" + password + "','" + email + "'," + str(age) + ");")
         connection.commit()
         connection.close()
-        text = "Votre compte à bien été créer. Vous êtes connecté en tant que %s" % (login)
-        return render_template("profile.html", message = text)
+        return render_template("profile.html", connectedAs = connectedAs)
 
 @auth.route('/logout')
 def logout():
