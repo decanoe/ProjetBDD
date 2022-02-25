@@ -7,6 +7,16 @@
     bottom: 0%;
     z-index: 3;
 }
+
+.header #user{
+    color: #03071E;
+    left: 0%;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    text-decoration: none;
+}
+
 .header{
     border: 5px solid #8a2020;
     border-radius: 10px;

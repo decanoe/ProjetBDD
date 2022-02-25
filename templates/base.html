@@ -9,6 +9,9 @@
 </head>
 <body>
     <div class="header">
+        {% if connectedAs != None %}
+        <a href="/profile" id="user">{{connectedAs}}</a>
+        {% endif %}
         <div class="logo">
             <a href="/"><h4>Cinerum</h4></a>
             <!-- <img src="{{url_for('static', filename='logo.jpg')}}" alt="logo" title="Logo Cinerum"/> -->
