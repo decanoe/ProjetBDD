@@ -11,7 +11,7 @@
 .header{
     border: 5px solid #8a2020;
     border-radius: 10px;
-    background-color: #848c94;
+    background-color: #b63131;
 }
 
 .sticky-header{
@@ -67,12 +67,12 @@
 	background-color:#b63131;
 	color:#adb5bd;
 	transition:background-color, color;
-    transition-duration:0.6s,0.6s;
+    transition-duration:0.3s,0.3s;
     cursor: pointer;
 }
 .nav-links li a:not(:hover){
 	background-color:#03071E;
 	color:#adb5bd;
 	transition:background-color, color;
-	transition-duration:0.6s,0.6s;
+	transition-duration:0.3s,0.3s;
 }
