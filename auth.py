@@ -28,6 +28,11 @@ def loginMethod():
     else:
         return render_template("login.html", message = "Identifiant ou mot de passe incorrect")
 
+
+@auth.route('/signup')
+def signup():
+    return render_template("signup.html")
+
 @auth.route('/signupMethod', methods=['POST'])
 def signupMethod():
     login = request.form['login']
@@ -37,45 +42,36 @@ def signupMethod():
 
     connection = startConnection("database.db")
     cur = connection.cursor()
-    cur.execute('select login from users')
-    list_login = cur.fetchone()
-    cur.execute('select email from users')
-    list_email = cur.fetchone()
+
+    #Test for empty fields
     if login == "" or password == "" or email == "" or age == "":
         text = "Veuillez remplir tous les formulaires afin de créer votre compte"
         return render_template("signup.html", message = text)
-    elif len(login)>30:
+    
+    # --- Login Tests ---
+    elif len(login) > 30:
         text ="Votre login est trop long (max 30 caractères). "
         return render_template("signup.html", message = text)
-    elif login in list_login:
+    elif cur.execute('SELECT login FROM users WHERE login = "' + login + '";').fetchone != None:
         text = "Ce pseudonyme est déjà utilisé"
         print('DEJA UTILISE')
         return render_template("signup.html", message = text)
-    elif len(password)>30:
+    
+    # --- password ---
+    elif len(password) > 30:
         text ="Votre mot de passe est trop long (max 30 caractères). "
         return render_template("signup.html", message = text)
-    elif len(password)<5:
-        text ="Votre mot de passe doit contenir au moins 5 caractères. "
-        return render_template("signup.html", message = text)
-    elif "@" not in email or "." not in email:
-        text ="Votre email doit être valide. "
-        return render_template("signup.html", message = text)
-    elif email in list_email:
+    
+    # --- email ---
+    elif cur.execute('SELECT email FROM users WHERE email = "' + email + '";').fetchone != None:
         text = "Cette adresse email est déjà utilisée"
         return render_template("signup.html", message = text)
-    elif not age.isnumeric():
-        text = "Vous devez indiquez un âge valide. "
-        return render_template("signup.html", message = text)
+    
     else:
         cur.execute("INSERT INTO users (login,password,email,age) VALUES ('" + login + "','" + password + "','" + email + "'," + str(age) + ");")
-        connection.commit()
         connection.close()
         text = "Votre compte à bien été créer. Vous êtes connecté en tant que %s" % (login)
         return render_template("profile.html", message = text)
-
-@auth.route('/signup')
-def signup():
-    return render_template("signup.html")
 
 @auth.route('/logout')
 def logout():
