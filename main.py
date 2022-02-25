@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-
+from app import startConnection
 main = Blueprint('main', __name__)
 
 @main.route('/')
@@ -15,3 +15,12 @@ def profile():
 @main.route('/forum')
 def forum():
     return render_template("forum.html")
+
+@main.route('/resetData', methods=['POST'])
+def resetData():
+    connection = startConnection("database.db")
+    cur = connection.cursor()
+    cur.execute("DELETE FROM users")
+    connection.commit()
+    connection.close()
+    return render_template("index.html", message = "La table users a été reset")

@@ -15,6 +15,10 @@
             <th>content</th>
           </tr>
         </thead>
+        <p>{{message}}</p>
+        <!-- <form action="/resetData" method="POST">
+          <input type="submit" name= "form" value="Reset Database"/>
+        </form> -->
         {% for post in postList %}
         <tr>
           <td>{{post.author}}</td>
