@@ -1,10 +1,7 @@
 from flask import Blueprint, render_template
 from app import startConnection
-<<<<<<< HEAD
-=======
 from pythonClass.post import Post
 
->>>>>>> b44f00aa55a977d059c3d74a8c3c2128cc881c24
 main = Blueprint('main', __name__)
 
 @main.route('/')
