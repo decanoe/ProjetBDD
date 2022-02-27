@@ -14,11 +14,12 @@ body a{
 }
 
 #footer{
-    margin: auto;
-    position: -webkit-sticky;
     position: absolute;
-    bottom: 0%;
-    z-index: 3;
+    bottom: 0;
+    width: 100%;
+    padding-top: 50px;
+    height: 50px;
+    text-align: center;
 }
 
 #account{
@@ -51,6 +52,14 @@ body a{
     color: #a9a9b3;
 }
 
+#content{
+    display: block;
+    text-align: center;
+    max-width: 800px;
+    width: 60%;
+    margin: auto;
+    position: relative;
+}
 
 /*------------Animation nav------------*/
 
