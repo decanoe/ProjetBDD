@@ -8,38 +8,33 @@
     {% endblock %}
 </head>
 <body>
-    <div class="header">
+    <div class="sticky-header">
         {% if connectedAs != None %}
-        <div class="icon">
-            <div id="account">
-                <a href="/profile"><img src="https://img.icons8.com/ios-glyphs/30/000000/guest-male.png"/></a>
-                <a href="/profile" id="user">{{connectedAs}}</a>
-            </div>
-            <a href="/logout" id="logout"><img src="https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/000000/external-log-out-user-interface-kmg-design-detailed-outline-kmg-design.png" width="30" height="30"/></a>
+        <div id="account">
+            <a href="/profile"><img src="https://img.icons8.com/ios-glyphs/30/000000/guest-male.png"/></a>
+            <a href="/profile" id="user">{{connectedAs}}</a>
         </div>
         {% endif %}
         <div class="logo">
             <a href="/"><h4>Cinerum</h4></a>
             <!-- <img src="{{url_for('static', filename='logo.jpg')}}" alt="logo" title="Logo Cinerum"/> -->
         </div>
-        <nav class="sticky-header">
-            <ul class="nav-links">
-                <li><a href="/">Accueil</a></li>
-                <li><a href="/forum">Forum</a></li>
-                {%if connectedAs == None%}
-                <li><a href="/login">Se connecter</a></li>
-                <li><a href="/signup">Créer Mon Compte</a></li>
-                {%else%}
-                <li><a href="/profile">Mon compte</a></li>
-                <li><a href="/logout">Se déconnecter</a></li>
-                {%endif%}
-            </ul>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </div>
-        </nav>
+        <ul class="nav-links">
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/forum">Forum</a></li>
+            {%if connectedAs == None%}
+            <li><a href="/login">Se connecter</a></li>
+            <li><a href="/signup">Créer Mon Compte</a></li>
+            {%else%}
+            <li><a href="/profile">Mon compte</a></li>
+            <li><a href="/logout">Se déconnecter</a></li>
+            {%endif%}
+        </ul>
+        {% if connectedAs != None %}
+        <div id="logout">
+            <a href="/logout" id="logout"><img src="https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/000000/external-log-out-user-interface-kmg-design-detailed-outline-kmg-design.png" width="30" height="30"/></a>
+        </div>
+        {% endif %}
     </div>
     <div id="content">
         {% block content %}

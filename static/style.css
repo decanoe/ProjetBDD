@@ -1,60 +1,54 @@
 /*-----------Mise en forme page----------*/
+body{
+    padding:0px;
+    margin:0px;
+    color: #a9a9b3;
+    background-color: #292a2d;
+    font-family: system-ui;
+}
+
+body a{
+    color: #a9a9b3;
+    text-decoration: none;
+    color: #55bde2;
+}
+
 #footer{
     margin: auto;
-    font-family: 'Poppins', sans-serif;
     position: -webkit-sticky;
     position: absolute;
     bottom: 0%;
     z-index: 3;
 }
 
-.icon{
-    height: 30px;
-    display: flex;
-    align-items: center;
-    padding-top: 3px;
-    justify-content: space-between;
-}
-
-.icon #account{
+#account{
     display: flex;
     align-items: center;
 }
-.icon #user{
-    color: #03071E;
-    font-family: 'Poppins', sans-serif;
+#user{
     font-size: 20px;
     text-decoration: none;
+    color: #a9a9b3;
 }
-
-.header{
-    border: 5px solid #8a2020;
-    border-radius: 10px;
-    background-color: #b63131;
-}
-
 .sticky-header{
+    background-color: #252627;
     display: flex;
-    justify-content: space-around;
-    margin: auto;
-    min-height: 13vh;
-    font-family: 'Poppins', sans-serif;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
     position: -webkit-sticky;
     position: sticky;
     top: 0%;
     z-index: 3;
-
+    padding-inline: 100px;
 }
-
 .logo a{
-    color: #03071E;
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
     text-transform: uppercase;
     letter-spacing: 5px;
-    font-size: 20px;
+    font-size: 1.5rem;
     font-style: bold;
     text-decoration: none;
+    color: #a9a9b3;
 }
 
 
@@ -62,9 +56,8 @@
 
 .nav-links{
     display: flex;
-    width: 60%;
+    align-items: center;
     justify-content: space-between;
-    margin-inline: auto;
 }
 
 .nav-links li{
@@ -72,26 +65,16 @@
 }
 
 .nav-links a{
-    color: #6A040F;
+    position: relative;
     text-decoration: none;
-    letter-spacing: 3px;
     font-size: 14px;
-    padding: 5px;
     border-radius: 5px;
-    padding: 15px;
-    margin: auto;
+    padding: 10px;
+    margin: 20px;
+    color: #a9a9b3;
 }
 
 .nav-links li a:hover{
-	background-color:#b63131;
-	color:#adb5bd;
-	transition:background-color, color;
-    transition-duration:0.3s,0.3s;
+	color:white;
     cursor: pointer;
-}
-.nav-links li a:not(:hover){
-	background-color:#03071E;
-	color:#adb5bd;
-	transition:background-color, color;
-	transition-duration:0.3s,0.3s;
 }
