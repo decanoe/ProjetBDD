@@ -13,6 +13,11 @@ body a{
     color: #55bde2;
 }
 
+body a:hover{
+    color:white;
+    cursor: pointer;
+}
+
 #footer{
     position: absolute;
     bottom: 0;
@@ -25,14 +30,6 @@ body a{
 #account{
     display: flex;
     align-items: center;
-}
-#user{
-    font-size: 20px;
-    text-decoration: none;
-}
-#user:hover{
-	color:white;
-    cursor: pointer;
 }
 
 .sticky-header{
@@ -63,12 +60,12 @@ body a{
 
 #content{
     display: block;
-    text-align: center;
     max-width: 800px;
     width: 60%;
     margin: auto;
     position: relative;
 }
+
 
 /*------------Animation nav------------*/
 
@@ -80,6 +77,8 @@ body a{
 
 .nav-links li{
     list-style: none;
+    margin: 0.5rem;
+    padding: 10px;
 }
 
 .nav-links a{
@@ -87,8 +86,15 @@ body a{
     text-decoration: none;
     font-size: 14px;
     border-radius: 5px;
-    padding: 10px;
-    margin: 20px;
+    color: #a9a9b3;
+}
+
+.nav-links div{
+    position: relative;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-right: 3rem;
     color: #a9a9b3;
 }
 
