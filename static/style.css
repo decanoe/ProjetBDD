@@ -33,7 +33,8 @@ body a:hover{
 }
 
 .sticky-header{
-    background-color: #252627;
+    background-color: #6a040f;
+    /* background-color: #252627; */
     display: flex;
     justify-content: space-between;
     align-items: center;
