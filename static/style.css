@@ -44,6 +44,11 @@ body a:hover{
     z-index: 3;
     padding-inline: 100px;
 }
+
+.logo{
+    display: flex;
+    align-items: center;
+}
 .logo a{
     text-transform: uppercase;
     letter-spacing: 5px;
@@ -51,6 +56,7 @@ body a:hover{
     font-style: bold;
     text-decoration: none;
     color: #a9a9b3;
+    margin-left: 10px;
 }
 
 .logo a:hover{
@@ -65,6 +71,23 @@ body a:hover{
     margin: auto;
     position: relative;
 }
+
+/* ------------Forms------------ */
+
+input{
+    background-color: #363636;
+    border-radius: 0.25rem;
+    border: none;
+    outline: none;
+    height: 1.5rem;
+    margin-top: 1rem;
+    color: #a9a9b3;
+}
+
+.form-submit:hover{
+    cursor: pointer;
+}
+
 
 
 /*------------Animation nav------------*/
