@@ -19,7 +19,7 @@ body a:hover{
 }
 
 #footer{
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     padding-top: 50px;
