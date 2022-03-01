@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .nav-links #forum{
+        font-weight: bold;
+        color: #fff;
+    }
+</style>
 {% extends "base.html" %}
 {% block title %}Forum {% endblock %}
 <body>
     {% block content %}
-    <h1>Ceci est la page forum</h1>
+    <h2>Ceci est la page forum</h2>
     <table>
         {% for post in list_post %}
         <div id="post">
-            <div id="post_header">{{post.title}}</div>
-            <div id="post_content">{{post.content}}</div>
-            <div id="post_footer">{{post.author}}</div>
+            <h3 id="post_header">{{post.title}}</h2>
+            <p id="post_content">{{post.content}}</p>
+            <p id="post_footer">{{post.author}}</p>
         </div>
         </br>
         {% endfor %}

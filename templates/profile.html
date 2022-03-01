@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .nav-links #profile{
+      font-weight: bold;
+      color: #fff;
+    }
+</style>
 {% extends "base.html" %}
 {% block title %}Mon compte {% endblock %}
 <body>
     {% block content %}
-    <h1>Mon compte</h1>
+    <h2>Mon compte</h2>
     <div class="connected">
         <h4 id="connected-msg">Connecté en tant que {{connectedAs}}</h4>
     </div>

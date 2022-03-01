@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .nav-links #login{
+      font-weight: bold;
+      color: #fff;
+    }
+</style>
 {% extends "base.html" %}
 {% block title %}Se connecter {% endblock %}
 <body>
     {% block content %}
-    <h1>Se connecter</h1>
+    <h2>Se connecter</h2>
     <p>{{message}}</p>
     <form action="/loginMethod" method="POST">
-        login: <input type="text" name="login"/>
-        password: <input type="password" name="password"/>
-        <input type="submit" name= "form" value="Submit"/>
+        <div><input type="text" name="login" placeholder="Identifiant"/></div>
+        <div><input type="password" name="password" placeholder="Mot de passe"/></div>
+        <div><input type="submit" name= "form" value="Se connecter" class="form-submit"/></div>
     </form>
+    <p>Vous n'avez pas de compte ? <a href="/signup">Inscrivez-vous</a></p>
     {% endblock %}
 </body>
 </html>
