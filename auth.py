@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, flash
 from app import startConnection
+from pythonClass.user import User
 
 auth = Blueprint('auth', __name__)
 
@@ -17,11 +18,11 @@ def loginMethod():
     connection = startConnection("database.db")
     cur = connection.cursor()
     cur.execute('SELECT * FROM users WHERE login = "' + login + '" AND password = "' + password + '";')
-    exist = (cur.fetchone() == None)
+    result = cur.fetchone()
     connection.close()
-    if not(exist):
+    if result != None:
         global connectedAs
-        connectedAs = login
+        connectedAs = User(result[1], result[2], result[3], result[4])
         return render_template("profile.html", message = "Connecté en tant que %s" % (login), connectedAs = connectedAs)
     else:
         return render_template("login.html", message = "Identifiant ou mot de passe incorrect", connectedAs = connectedAs)
