@@ -37,3 +37,8 @@ def resetData():
 
     from auth import connectedAs as user
     return render_template("index.html", message = "La table users a été reset", connectedAs = user)
+
+@main.route('/post/<int:post_id>')
+def show_post(post_id):
+    
+    return render_template("post.html", post = )

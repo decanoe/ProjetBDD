@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .nav-links #forum{
+        font-weight: bold;
+        color: #fff;
+    }
+</style>
+{% extends "base.html" %}
+{% block title %}Post{% endblock %}
+<body>
+    {% block content %}
+    <h2>{{post.title}}</h2>
+    <p>{{post.content}}</p>
+    <h4>{{post.author}}</h4>
+    <table>
+        {% for comment in list_comment %}
+        {% endfor %}
+    </table>
+    {% endblock %}
+</body>
+</html>
