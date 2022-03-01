@@ -13,10 +13,19 @@
     <h2>{{post.title}}</h2>
     <p>{{post.content}}</p>
     <h4>{{post.author}}</h4>
+    {%if connectedAs != None%}
+    <form id="comment-form" action="/comment" method="POST">
+        <div><input type="text" name="content" placeholder="Écrire un commentaire"/></div>
+        <div><input type="submit" name= "form" value="Poster le commentaire" class="form-submit"/></div>
+        <input type="hidden" name="id_post" value={{post.id}}>
+    </form>
+    {% else %}
+    <p>Connectez vous pour pouvoir commenter ce post.</p>
+    {% endif %}
     <table>
         {% for comment in list_comment %}
         <div id="comments">
-            <h3 id="comment_user">{{comment.user}</h2>
+            <h3 id="comment_user">{{comment.user}}</h2>
             <p id="comment_content">{{comment.content}}</p>
         </div>
         </br>
