@@ -15,6 +15,11 @@
     <h4>{{post.author}}</h4>
     <table>
         {% for comment in list_comment %}
+        <div id="comments">
+            <h3 id="comment_user">{{comment.user}</h2>
+            <p id="comment_content">{{comment.content}}</p>
+        </div>
+        </br>
         {% endfor %}
     </table>
     {% endblock %}
