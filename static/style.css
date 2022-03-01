@@ -19,7 +19,7 @@ body a:hover{
 }
 
 #footer{
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     padding-top: 50px;
@@ -125,4 +125,28 @@ input{
 .nav-links li a:hover{
 	color:white;
     cursor: pointer;
+}
+
+
+
+
+
+/*------------table-------------*/
+#post{
+    background-color: #6b6767;
+    font-size: 150%;
+}
+
+#post_header{
+    background-color: #363636;
+    color: #a9a9b3;
+}
+
+#post_content{
+    color: #000;
+}
+
+#post_footer{
+    color: #000;
+    font-size: 70%;
 }
