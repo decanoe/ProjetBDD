@@ -20,7 +20,7 @@ body a:hover{
 }
 
 #footer{
-    position: relative;
+    position: fixed;
     bottom: 0%;
     width: 100%;
     padding-top: 50px;
@@ -138,38 +138,44 @@ input{
     overflow-x: hidden;
 }
 
+#slider2{
+    width: 300px;
+    position: fixed;
+    right: 5%;
+    top: 20%;
+    overflow-x: hidden;
+}
+
+
 .diaporama {
     animation: slide 17s ease infinite 0s;
     width: 700%;
     position: sticky;
   }
   @keyframes slide {
-    0%, 11.76%, 100% {
+    0%, 12%, 100% {
       transform: translate(0,0);
     }
-    17.65%, 29.41% {
+    16%, 28% {
       transform: translate(-305px,0);
     }
-    35.29%, 47.06% {
+    32%, 44% {
       transform: translate(-610px,0);
     }
-    52.94%, 64.71% {
+    48%, 60% {
       transform: translate(-915px,0);
     }
-    70.59%, 82.35% {
+    64%, 76% {
       transform: translate(-1220px,0);
     }
-    88.24%, 100% {
+    80%, 92% {
       transform: translate(-1525px,0);
     }
-  }
+    96%, 100%{
+        transform: translate(0,0);
+    }
 
-  #slider2{
-    width: 300px;
-    position: absolute;
-    right: -50%;
-    overflow-x: hidden;
-}
+  }
 
 
 
