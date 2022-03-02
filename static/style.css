@@ -128,6 +128,35 @@ input{
 }
 
 
+/*------------diapo auto-------------*/
+.diaporama {
+    animation: slide 17s ease infinite 0s;
+    width: 600%;
+    position: sticky;
+    margin: 10%;
+  }
+  @keyframes slide {
+    0%, 11.76%, 100% {
+      transform: translate(0,0);
+    }
+    17.65%, 29.41% {
+      transform: translate(-305px,0);
+    }
+    35.29%, 47.06% {
+      transform: translate(-610px,0);
+    }
+    52.94%, 64.71% {
+      transform: translate(-915px,0);
+    }
+    70.59%, 82.35% {
+      transform: translate(-1220px,0);
+    }
+    88.24%, 100% {
+      transform: translate(-1525px,0);
+    }
+  }
+
+
 
 
 

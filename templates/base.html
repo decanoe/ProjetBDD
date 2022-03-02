@@ -43,6 +43,14 @@
     <div id="content">
         {% block content %}
         {% endblock %}
+        <div id="diapo" class="diaporama">
+            <img src="{{url_for('static', filename='arrietty.jpg')}}" alt="" height="500px" width="300px">
+            <img src="{{url_for('static', filename='avatar.jpg')}}" alt="" height="500px" width="300px">
+            <img src="{{url_for('static', filename='chihiro.jpg')}}" alt="" height="500px" width="300px">
+            <img src="{{url_for('static', filename='gladiator.jpg')}}" alt="" height="500px" width="300px">
+            <img src="{{url_for('static', filename='inception.jpg')}}" alt="" height="500px" width="300px">
+            <img src="{{url_for('static', filename='Le-château-dans-le-ciel.jpg')}}" alt="" height="500px" width="300px">
+        </div id="diapo">
     </div>
     <div id="footer">
         {% block footer %}
