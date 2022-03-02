@@ -5,6 +5,7 @@ body{
     color: #a9a9b3;
     background-color: #292a2d;
     font-family: system-ui;
+    overflow-x: hidden;
 }
 
 body a{
@@ -129,11 +130,23 @@ input{
 
 
 /*------------diapo auto-------------*/
+#slider{
+    width: 300px;
+    position: absolute;
+    left: -50%;
+    overflow-x: hidden;
+}
+
+#slider2{
+    width: 300px;
+    position: absolute;
+    right: -50%;
+    overflow-x: hidden;
+}
 .diaporama {
     animation: slide 17s ease infinite 0s;
-    width: 600%;
+    width: 700%;
     position: sticky;
-    margin: 10%;
   }
   @keyframes slide {
     0%, 11.76%, 100% {
