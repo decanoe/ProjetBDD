@@ -136,6 +136,7 @@ input{
     left: 5%;
     top: 20%;
     overflow-x: hidden;
+    border-radius: 10px;
 }
 
 #slider2{
@@ -144,6 +145,7 @@ input{
     right: 5%;
     top: 20%;
     overflow-x: hidden;
+    border-radius: 10px;
 }
 
 

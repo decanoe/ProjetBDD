@@ -34,9 +34,9 @@ def signup():
 
 @auth.route('/signupMethod', methods=['POST'])
 def signupMethod():
-    login = request.form['login']
-    password = request.form['password']
-    email = request.form['email']
+    login = request.form['login'].replace("'","''")
+    password = request.form['password'].replace("'","''")
+    email = request.form['email'].replace("'","''")
     age = request.form['age']
 
     connection = startConnection("database.db")
