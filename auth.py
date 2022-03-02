@@ -22,7 +22,7 @@ def loginMethod():
     connection.close()
     if result != None:
         global connectedAs
-        connectedAs = User(result[1], result[2], result[3], result[4])
+        connectedAs = User(result[0], result[1], result[2], result[3], result[4])
         return render_template("profile.html", message = "Connecté en tant que %s" % (login), connectedAs = connectedAs)
     else:
         return render_template("login.html", message = "Identifiant ou mot de passe incorrect", connectedAs = connectedAs)
