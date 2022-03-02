@@ -138,6 +138,7 @@ input{
     overflow-x: hidden;
 }
 
+<<<<<<< HEAD
 #slider2{
     width: 300px;
     position: fixed;
@@ -146,6 +147,9 @@ input{
     overflow-x: hidden;
 
 }
+=======
+
+>>>>>>> 39746c1cf8ebeb4875182021432e2f8203d296e2
 .diaporama {
     animation: slide 17s ease infinite 0s;
     width: 700%;
@@ -172,7 +176,12 @@ input{
     }
   }
 
-
+  #slider2{
+    width: 300px;
+    position: absolute;
+    right: -50%;
+    overflow-x: hidden;
+}
 
 
 
