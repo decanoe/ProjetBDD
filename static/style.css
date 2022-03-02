@@ -21,7 +21,7 @@ body a:hover{
 
 #footer{
     position: relative;
-    bottom: 0;
+    bottom: 0%;
     width: 100%;
     padding-top: 50px;
     height: 50px;
@@ -132,16 +132,19 @@ input{
 /*------------diapo auto-------------*/
 #slider{
     width: 300px;
-    position: absolute;
-    left: -50%;
+    position: fixed;
+    left: 5%;
+    top: 20%;
     overflow-x: hidden;
 }
 
 #slider2{
     width: 300px;
-    position: absolute;
-    right: -50%;
+    position: fixed;
+    right: 5%;
+    top: 20%;
     overflow-x: hidden;
+
 }
 .diaporama {
     animation: slide 17s ease infinite 0s;
