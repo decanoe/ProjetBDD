@@ -11,17 +11,18 @@
 <body>
     {% block content %}
     <h2>Ceci est la page forum</h2>
-    <table>
+    <div id="list-post">
         {% for post in list_post %}
         <a href="/post/{{post.id}}">
             <div id="post">
-                <h3 id="post_header">{{post.title}}</h2>
-                <p id="post_content">{{post.content}}</p>
-                <p id="post_footer">{{post.author}}</p>
+                <h3 id="post_title">{{post.title.capitalize()}}</h3>
+                <p id="post_content">{{post.content[0:50]+" ..."}}</p>
+                <p id="post_author">Auteur : {{post.author}}</p>
             </div>
         </a>
+        <div class="border"></div>
         {% endfor %}
-    </table>
+    </div>
     {% endblock %}
 </body>
 </html>

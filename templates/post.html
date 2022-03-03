@@ -20,7 +20,7 @@
         <input type="hidden" name="id_post" value={{post.id}}>
     </form>
     {% else %}
-    <p><a href="/login">Connectez-vous</a> pour commenter ce post.</p>
+    <p><a href="/login" class="blue-link">Connectez-vous</a> pour commenter ce post.</p>
     {% endif %}
     <table>
         {% for comment in list_comment %}

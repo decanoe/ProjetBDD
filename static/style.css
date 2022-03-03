@@ -7,8 +7,12 @@ body{
     font-family: system-ui;
     overflow-x: hidden;
 }
+a{
+    text-decoration: none;
+    color: #a9a9b3;
+}
 
-body a{
+.blue-link {
     color: #a9a9b3;
     text-decoration: none;
     color: #55bde2;
@@ -136,7 +140,7 @@ input{
     left: 5%;
     top: 20%;
     overflow-x: hidden;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 #slider2{
@@ -145,7 +149,7 @@ input{
     right: 5%;
     top: 20%;
     overflow-x: hidden;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 
@@ -183,20 +187,42 @@ input{
 
 /*------------table-------------*/
 #post{
-    background-color: #6b6767;
-    font-size: 150%;
+    position: relative;
+    margin-block-end: 1em;
 }
 
-#post_header{
-    background-color: #363636;
-    color: #a9a9b3;
+#list-post{
+    background-color: #35373a;
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 50%);
+    display: table-cell;
+    vertical-align: top;
+    padding: 10px 8px;
+    width: 800px;
+    margin: auto;
+    position: relative;
+    border-collapse: collapse;
 }
 
-#post_content{
-    color: #000;
+#post p,h3 {
+    margin:0%
 }
 
-#post_footer{
-    color: #000;
-    font-size: 70%;
+#list-post .border{
+    border-top: 1px solid #615b5b;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+#post:hover{
+	color: #a9a9b3;
+    background-color: #2B2D42;
+	transition:color,background-color;
+    transition-duration:0.5s,0.5s;
+    cursor: pointer;
+}
+#post:not(:hover){
+	color: #a9a9b3;
+    background-color: #35373a;
+	transition:color, background-color;
+	transition-duration:0.5s,0.5s;
 }
