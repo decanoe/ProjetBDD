@@ -7,8 +7,12 @@ body{
     font-family: system-ui;
     overflow-x: hidden;
 }
+a{
+    text-decoration: none;
+    color: #a9a9b3;
+}
 
-body a{
+.blue-link {
     color: #a9a9b3;
     text-decoration: none;
     color: #55bde2;
@@ -20,7 +24,7 @@ body a:hover{
 }
 
 #footer{
-    position: relative;
+    position: fixed;
     bottom: 0%;
     width: 100%;
     padding-top: 50px;
@@ -76,7 +80,7 @@ body a:hover{
 
 /* ------------Forms------------ */
 
-input{
+input, textarea{
     background-color: #363636;
     border-radius: 0.25rem;
     border: none;
@@ -86,6 +90,14 @@ input{
     color: #a9a9b3;
 }
 
+textarea{
+    width: 100%;
+    height: auto;
+    resize: none;
+    overflow: hidden;
+    min-height: 50px;
+    max-height: 100px;
+}
 .form-submit:hover{
     cursor: pointer;
 }
@@ -131,12 +143,25 @@ input{
 
 /*------------diapo auto-------------*/
 #slider{
-    width: 300px;
+    width: 20%;
+    height: 50%;
     position: fixed;
     left: 5%;
     top: 20%;
     overflow-x: hidden;
+    border-radius: 20px;
 }
+
+#slider2{
+    width: 20%;
+    height: 50%;
+    position: fixed;
+    right: 5%;
+    top: 20%;
+    overflow-x: hidden;
+    border-radius: 20px;
+}
+
 
 .diaporama {
     animation: slide 17s ease infinite 0s;
@@ -144,51 +169,83 @@ input{
     position: sticky;
   }
   @keyframes slide {
-    0%, 11.76%, 100% {
+    0%, 12%, 100% {
       transform: translate(0,0);
     }
-    17.65%, 29.41% {
-      transform: translate(-305px,0);
+    16%, 28% {
+      transform: translate(-20%,0);
     }
-    35.29%, 47.06% {
-      transform: translate(-610px,0);
+    32%, 44% {
+      transform: translate(-40%,0);
     }
-    52.94%, 64.71% {
-      transform: translate(-915px,0);
+    48%, 60% {
+      transform: translate(-60%,0);
     }
-    70.59%, 82.35% {
-      transform: translate(-1220px,0);
+    64%, 76% {
+      transform: translate(-80%,0);
     }
-    88.24%, 100% {
-      transform: translate(-1525px,0);
+    80%, 92% {
+      transform: translate(-100%,0);
     }
-  }
+    96%, 100%{
+        transform: translate(0,0);
+    }
 
-  #slider2{
-    width: 300px;
-    position: absolute;
-    right: -50%;
-    overflow-x: hidden;
-}
+  }
 
 
 
 /*------------table-------------*/
 #post{
-    background-color: #6b6767;
-    font-size: 150%;
+    position: relative;
+    margin-block-end: 1em;
 }
 
-#post_header{
-    background-color: #363636;
-    color: #a9a9b3;
+.post-container{
+    background-color: #35373a;
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 50%);
+    display: table-cell;
+    vertical-align: top;
+    padding: 10px 8px;
+    width: 800px;
+    margin: auto;
+    position: relative;
+    border-collapse: collapse;
 }
 
-#post_content{
-    color: #000;
+.post-container h2{
+    margin: 0%;
 }
 
-#post_footer{
-    color: #000;
-    font-size: 70%;
+#post p,h3 {
+    margin:0%
+}
+
+.post-author{
+    font-style: italic;
+    text-align: right;
+}
+
+.border{
+    border-top: 1px solid #615b5b;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+#post:hover{
+	color: #a9a9b3;
+    background-color: #2B2D42;
+	transition:color,background-color;
+    transition-duration:0.5s,0.5s;
+    cursor: pointer;
+}
+#post:not(:hover){
+	color: #a9a9b3;
+    background-color: #35373a;
+	transition:color, background-color;
+	transition-duration:0.5s,0.5s;
+}
+
+#input-title{
+    width: 100%;
 }

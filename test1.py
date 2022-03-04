@@ -2,7 +2,10 @@ from app import startConnection
 import random
 
 posts = [
-('a\nb', 'title')
+('a\nb', 'title'),
+('a\nb', 'title'),
+('a\nb', 'title'),
+('a\nb', 'title'),
 ]
 
 def Remake_All_Posts():
