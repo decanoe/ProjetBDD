@@ -24,16 +24,14 @@ def startConnection(path):
 
     return connect
 
-"""
-connection = startConnection("database.db")
-cur = connection.cursor()
+#connection = startConnection("database.db")
+#cur = connection.cursor()
 
-cur.execute('DROP TABLE comments')
+#cur.execute('DROP TABLE comments')
 #cur.execute('CREATE TABLE users ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "login" TEXT UNIQUE NOT NULL, "password" TEXT NOT NULL, "email" TEXT UNIQUE NOT NULL, "age" INTEGER NOT NULL)')
-cur.execute('CREATE TABLE movies ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "title" TEXT NOT NULL, "realisator" TEXT NOT NULL, "date" DATE, "duration" INTEGER, "image_path" TEXT NOT NULL, "genres" TEXT NOT NULL, "resum" TEXT NOT NULL, "resum_author" INTGER NOT NULL, FOREIGN KEY("resum_author") REFERENCES "users"("id"))')
-cur.execute('CREATE TABLE comments ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "movie" INTEGER, "user" INTEGER, "content" TEXT NOT NULL, "date" DATE, FOREIGN KEY("user") REFERENCES "users"("id"), FOREIGN KEY("movie") REFERENCES "movies"("id"))')
-connection.commit()
-"""
+#cur.execute('CREATE TABLE movies ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "title" TEXT NOT NULL, "realisator" TEXT NOT NULL, "date" DATE, "duration" INTEGER, "image_path" TEXT NOT NULL, "genres" TEXT NOT NULL, "resum" TEXT NOT NULL, "resum_author" INTGER NOT NULL, FOREIGN KEY("resum_author") REFERENCES "users"("id"))')
+#cur.execute('CREATE TABLE comments ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "movie" INTEGER, "user" INTEGER, "content" TEXT NOT NULL, "date" DATE, FOREIGN KEY("user") REFERENCES "users"("id"), FOREIGN KEY("movie") REFERENCES "movies"("id"))')
+#connection.commit()
 '''
 cur.execute('SELECT * FROM users')
 

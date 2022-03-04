@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, request
 from app import startConnection
-from pythonClass.post import Post
+from pythonClass.movie import Post
 from pythonClass.comment import Comment
 from pythonClass.user import User
 
