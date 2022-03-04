@@ -11,7 +11,7 @@
 <body>
     {% block content %}
     <h2>Le forum CINERUM</h2>
-    <div id="list-post">
+    <div class="post-container">
         {% for post in list_post %}
         <a href="/post/{{post.id}}">
             <div id="post">

@@ -199,7 +199,7 @@ textarea{
     margin-block-end: 1em;
 }
 
-#list-post{
+.post-container{
     background-color: #35373a;
     box-shadow: 2px 2px 5px rgb(0 0 0 / 50%);
     display: table-cell;
@@ -211,12 +211,17 @@ textarea{
     border-collapse: collapse;
 }
 
+.post-container h2{
+    margin: 0%;
+}
+
 #post p,h3 {
     margin:0%
 }
 
 .post-author{
     font-style: italic;
+    text-align: right;
 }
 
 .border{

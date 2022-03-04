@@ -10,11 +10,14 @@
 {% block title %}Post{% endblock %}
 <body>
     {% block content %}
-    <h2>{{post.title}}</h2>
-    {% autoescape false  %}
-    <p>{{post.content}}</p>
-    {% endautoescape %}
-    <p class = "post-author">{{post.author}}</p>
+    <br>
+    <div class="post-container">
+        <h2>{{post.title}}</h2>
+        {% autoescape false  %}
+        <p>{{post.content}}</p>
+        {% endautoescape %}
+        <p class = "post-author">{{"Auteur : " ~ post.author}}</p>
+    </div>
     {%if connectedAs != None%}
     <form id="comment-form" action="/comment" method="POST">
         <div><textarea name="content" cols="30" rows="10" placeholder="Écrire un commentaire"></textarea></div>
