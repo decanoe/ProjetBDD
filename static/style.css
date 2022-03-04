@@ -143,49 +143,50 @@ textarea{
 
 /*------------diapo auto-------------*/
 #slider{
-    width: 20%;
-    height: 50%;
+    position: absolute;
+    width: 300px;
     position: fixed;
-    left: 5%;
+    left: 2%;
     top: 20%;
     overflow-x: hidden;
     border-radius: 20px;
 }
 
 #slider2{
-    width: 20%;
-    height: 50%;
+    position: absolute;
+    width: 300px;
     position: fixed;
-    right: 5%;
+    right: 2%;
     top: 20%;
     overflow-x: hidden;
     border-radius: 20px;
 }
-
 
 .diaporama {
     animation: slide 17s ease infinite 0s;
     width: 700%;
     position: sticky;
   }
+
+
   @keyframes slide {
     0%, 12%, 100% {
       transform: translate(0,0);
     }
     16%, 28% {
-      transform: translate(-20%,0);
+      transform: translate(-300px,0);
     }
     32%, 44% {
-      transform: translate(-40%,0);
+      transform: translate(-605px,0);
     }
     48%, 60% {
-      transform: translate(-60%,0);
+      transform: translate(-910px,0);
     }
     64%, 76% {
-      transform: translate(-80%,0);
+      transform: translate(-1215px,0);
     }
     80%, 92% {
-      transform: translate(-100%,0);
+      transform: translate(-1520px,0);
     }
     96%, 100%{
         transform: translate(0,0);
@@ -231,7 +232,19 @@ textarea{
     width: 100%;
     margin-bottom: 1em;
 }
+#resum{
+    display: flex;
+    align-items: start;
+}
 
+#resum img{
+    max-width: 150px;
+    max-height: 250px;
+}
+
+#resum-text{
+    display: block;
+}
 #post:hover{
 	color: #a9a9b3;
     background-color: #2B2D42;
