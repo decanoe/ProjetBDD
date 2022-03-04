@@ -13,8 +13,8 @@
     {% if connectedAs != None %}
     <h2>Créer un post</h2>
     <form id="post-form" action="/createPost" method="POST">
-        <div><input type="text" id="input-title" name="title" placeholder="Titre du post"/></div>
-        <div><textarea name="content" cols="30" rows="10" placeholder="Contenu du post" spellcheck="true"></textarea></div>
+        <div><input type="text" id="input-title" name="title" minlength=1 required placeholder="Titre du post"/></div>
+        <div><textarea name="content" minlength=1 required placeholder="Contenu du post" spellcheck="true"></textarea></div>
         <div><input type="submit" name= "form" value="Créer le post" class="form-submit"/></div>
     </form>
     {% else %}

@@ -20,7 +20,7 @@
     </div>
     {%if connectedAs != None%}
     <form id="comment-form" action="/comment" method="POST">
-        <div><textarea name="content" cols="30" rows="10" placeholder="Écrire un commentaire"></textarea></div>
+        <div><textarea name="content" minlength=1 required placeholder="Écrire un commentaire"></textarea></div>
         <div><input type="submit" name= "form" value="Poster le commentaire" class="form-submit"/></div>
         <input type="hidden" name="id_post" value={{post.id}}>
     </form>
@@ -28,17 +28,21 @@
     <p><a href="/login" class="blue-link">Connectez-vous</a> pour commenter ce post.</p>
     {% endif %}
     <br>
-    <table>
-        {% for comment in list_comment %}
-        <div class="border"></div>
-        <div id="comments">
-            {% autoescape false %}
-            <p id="comment_content">{{comment.content}}</p>
-            {% endautoescape %}
-            <p class="post-author"> {{"écrit par " ~ comment.user}}</p>
-        </div>
-        {% endfor %}
-    </table>
+    {% if list_comment != [] %}
+    <div class="post-container">
+        <table>
+            {% for comment in list_comment %}
+            <div id="comments">
+                {% autoescape false %}
+                <p id="comment_content">{{comment.content}}</p>
+                {% endautoescape %}
+                <p class="post-author"> {{"écrit par " ~ comment.user}}</p>
+            </div>
+            <div class="border"></div>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
     {% endblock %}
 </body>
 </html>
