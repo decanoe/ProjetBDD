@@ -16,8 +16,10 @@
         <a href="/post/{{post.id}}">
             <div id="post">
                 <h3 id="post_title">{{post.title.capitalize()}}</h3>
+                {% autoescape false %}
                 <p id="post_content">{{post.content[0:50]+" ..."}}</p>
-                <p id="post_author">Auteur : {{post.author}}</p>
+                {% endautoescape %}
+                <p class="post-author">Auteur : {{post.author}}</p>
             </div>
         </a>
         <div class="border"></div>

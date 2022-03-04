@@ -80,7 +80,7 @@ body a:hover{
 
 /* ------------Forms------------ */
 
-input{
+input, textarea{
     background-color: #363636;
     border-radius: 0.25rem;
     border: none;
@@ -90,6 +90,14 @@ input{
     color: #a9a9b3;
 }
 
+textarea{
+    width: 100%;
+    height: auto;
+    resize: none;
+    overflow: hidden;
+    min-height: 50px;
+    max-height: 100px;
+}
 .form-submit:hover{
     cursor: pointer;
 }
@@ -207,7 +215,11 @@ input{
     margin:0%
 }
 
-#list-post .border{
+.post-author{
+    font-style: italic;
+}
+
+.border{
     border-top: 1px solid #615b5b;
     width: 100%;
     margin-bottom: 1em;
@@ -225,4 +237,8 @@ input{
     background-color: #35373a;
 	transition:color, background-color;
 	transition-duration:0.5s,0.5s;
+}
+
+#input-title{
+    width: 100%;
 }
