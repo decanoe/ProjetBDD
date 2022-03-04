@@ -10,6 +10,9 @@
 {% block title %}Se connecter {% endblock %}
 <body>
     {% block content %}
+    {% if connectedAs != None %}
+    <p>Vous êtes déjà connecté</p>
+    {% else %}
     <h2>Se connecter</h2>
     <p>{{message}}</p>
     <form action="/loginMethod" method="POST">
@@ -17,7 +20,8 @@
         <div><input type="password" name="password" placeholder="Mot de passe"/></div>
         <div><input type="submit" name= "form" value="Se connecter" class="form-submit"/></div>
     </form>
-    <p>Vous n'avez pas de compte ? <a href="/signup">Inscrivez-vous</a></p>
+    <p>Vous n'avez pas de compte ? <a href="/signup" class="blue-link">Inscrivez-vous</a></p>
+    {% endif %}
     {% endblock %}
 </body>
 </html>

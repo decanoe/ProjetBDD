@@ -61,8 +61,30 @@ def comment():
     connection = startConnection("database.db")
     cursor = connection.cursor()
     id_post = request.form['id_post']
-    content = request.form['content']
+    content = request.form['content'].replace("'","''")
     cursor.execute("INSERT INTO comments (post,user,content) VALUES("+str(id_post)+","+str(user.id)+",'"+content+"')")
     connection.commit()
+    connection.close()
+    return redirect("/post/"+str(id_post))
+
+@main.route('/createPost')
+def createPost():
+    from auth import connectedAs as user
+    print(user)
+    return render_template("createPost.html", connectedAs = user)
+
+@main.route("/createPost", methods=["POST"])
+def createPostMethod():
+    from auth import connectedAs as user
+    print(user.id)
+    connection = startConnection("database.db")
+    cursor = connection.cursor()
+    title = request.form['title'].replace("'","''")
+    content = request.form['content'].replace("'","''")
+    cursor.execute("INSERT INTO posts (author,title,content) VALUES("+str(user.id)+",'"+ title +"','"+content+"')")
+    connection.commit()
+    req = "SELECT id_post FROM posts WHERE author ="+str(user.id)+" AND title ='"+title+"' AND content ='"+content+"';"
+    print(req)
+    id_post = cursor.execute(req).fetchone()[0]
     connection.close()
     return redirect("/post/"+str(id_post))
