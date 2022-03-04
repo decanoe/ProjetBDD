@@ -61,7 +61,7 @@ def comment():
     connection = startConnection("database.db")
     cursor = connection.cursor()
     id_post = request.form['id_post']
-    content = request.form['content'].replace("'","''")
+    content = request.form['content'].replace("'","''").replace('\n','<br>')
     cursor.execute("INSERT INTO comments (post,user,content) VALUES("+str(id_post)+","+str(user.id)+",'"+content+"')")
     connection.commit()
     connection.close()
@@ -80,7 +80,7 @@ def createPostMethod():
     connection = startConnection("database.db")
     cursor = connection.cursor()
     title = request.form['title'].replace("'","''")
-    content = request.form['content'].replace("'","''")
+    content = request.form['content'].replace("'","''").replace('\n','<br>')
     cursor.execute("INSERT INTO posts (author,title,content) VALUES("+str(user.id)+",'"+ title +"','"+content+"')")
     connection.commit()
     req = "SELECT id_post FROM posts WHERE author ="+str(user.id)+" AND title ='"+title+"' AND content ='"+content+"';"

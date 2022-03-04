@@ -11,13 +11,15 @@
 <body>
     {% block content %}
     <h2>Le forum CINERUM</h2>
-    <div id="list-post">
+    <div class="post-container">
         {% for post in list_post %}
         <a href="/post/{{post.id}}">
             <div id="post">
                 <h3 id="post_title">{{post.title.capitalize()}}</h3>
+                {% autoescape false %}
                 <p id="post_content">{{post.content[0:50]+" ..."}}</p>
-                <p id="post_author">Auteur : {{post.author}}</p>
+                {% endautoescape %}
+                <p class="post-author">Auteur : {{post.author}}</p>
             </div>
         </a>
         <div class="border"></div>

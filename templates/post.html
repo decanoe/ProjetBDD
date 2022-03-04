@@ -10,25 +10,33 @@
 {% block title %}Post{% endblock %}
 <body>
     {% block content %}
-    <h2>{{post.title}}</h2>
-    <p>{{post.content}}</p>
-    <h4>{{post.author}}</h4>
+    <br>
+    <div class="post-container">
+        <h2>{{post.title}}</h2>
+        {% autoescape false  %}
+        <p>{{post.content}}</p>
+        {% endautoescape %}
+        <p class = "post-author">{{"Auteur : " ~ post.author}}</p>
+    </div>
     {%if connectedAs != None%}
     <form id="comment-form" action="/comment" method="POST">
-        <div><input type="text" name="content" placeholder="Écrire un commentaire"/></div>
+        <div><textarea name="content" cols="30" rows="10" placeholder="Écrire un commentaire"></textarea></div>
         <div><input type="submit" name= "form" value="Poster le commentaire" class="form-submit"/></div>
         <input type="hidden" name="id_post" value={{post.id}}>
     </form>
     {% else %}
     <p><a href="/login" class="blue-link">Connectez-vous</a> pour commenter ce post.</p>
     {% endif %}
+    <br>
     <table>
         {% for comment in list_comment %}
+        <div class="border"></div>
         <div id="comments">
-            <h3 id="comment_user">{{comment.user}}</h2>
+            {% autoescape false %}
             <p id="comment_content">{{comment.content}}</p>
+            {% endautoescape %}
+            <p class="post-author"> {{"écrit par " ~ comment.user}}</p>
         </div>
-        </br>
         {% endfor %}
     </table>
     {% endblock %}

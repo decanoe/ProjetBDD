@@ -80,7 +80,7 @@ body a:hover{
 
 /* ------------Forms------------ */
 
-input{
+input, textarea{
     background-color: #363636;
     border-radius: 0.25rem;
     border: none;
@@ -90,6 +90,14 @@ input{
     color: #a9a9b3;
 }
 
+textarea{
+    width: 100%;
+    height: auto;
+    resize: none;
+    overflow: hidden;
+    min-height: 50px;
+    max-height: 100px;
+}
 .form-submit:hover{
     cursor: pointer;
 }
@@ -191,7 +199,7 @@ input{
     margin-block-end: 1em;
 }
 
-#list-post{
+.post-container{
     background-color: #35373a;
     box-shadow: 2px 2px 5px rgb(0 0 0 / 50%);
     display: table-cell;
@@ -203,11 +211,20 @@ input{
     border-collapse: collapse;
 }
 
+.post-container h2{
+    margin: 0%;
+}
+
 #post p,h3 {
     margin:0%
 }
 
-#list-post .border{
+.post-author{
+    font-style: italic;
+    text-align: right;
+}
+
+.border{
     border-top: 1px solid #615b5b;
     width: 100%;
     margin-bottom: 1em;
@@ -225,4 +242,8 @@ input{
     background-color: #35373a;
 	transition:color, background-color;
 	transition-duration:0.5s,0.5s;
+}
+
+#input-title{
+    width: 100%;
 }
