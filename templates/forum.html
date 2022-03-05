@@ -17,7 +17,7 @@
             <div id="post">
                 <h3 id="post_title">{{movie.title.capitalize()}}</h3>
                 {% autoescape false %}
-                <p id="post_content">{{movie.resum[0:50]+" ..."}}</p>
+                <p id="post_content">{{movie.resum[0:100]+" ..."}}</p>
                 {% endautoescape %}
                 <p class="post-author">Réalisateur : {{movie.realisator}}</p>
             </div>

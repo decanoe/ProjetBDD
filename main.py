@@ -1,3 +1,4 @@
+from posixpath import split
 from flask import Blueprint, render_template, redirect, request
 from app import startConnection
 from pythonClass.movie import Movie
@@ -25,7 +26,7 @@ def forum():
 
     list_movie = []
     for result in cursor.execute("SELECT * FROM movies").fetchall():
-        list_movie.append(Movie(result[0], result[1], result[2], result[3], result[5], result[5], result[6], result[7], result[8]))
+        list_movie.append(Movie(result[0], result[1], result[2], result[3], result[5], result[5], result[6], result[7], result[8], result[9]))
 
     from auth import connectedAs as user
     return render_template("forum.html", list_movie = list_movie, connectedAs = user)
@@ -45,8 +46,8 @@ def resetData():
 def MoviePage(id_movie):
     connection = startConnection("database.db")
     cursor = connection.cursor()
-    result = cursor.execute("SELECT movies.id, title, realisator, date, duration, image_path, genres, resum, login FROM movies JOIN users ON users.id = movies.resum_author WHERE movies.id="+str(id_movie)+";").fetchone()
-    movie = Movie(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8])
+    result = cursor.execute("SELECT movies.id, title, realisator, date, duration, image_path, genres, resum, login, creation_date  FROM movies JOIN users ON users.id = movies.resum_author WHERE movies.id="+str(id_movie)+";").fetchone()
+    movie = Movie(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9])
     result = cursor.execute("SELECT movie, login, content, date FROM comments JOIN users ON users.id = comments.user WHERE movie="+str(id_movie)+";").fetchall()
     list_comment = []
     for comment in result:
@@ -63,8 +64,9 @@ def comment():
     id_movie = request.form['id_movie']
     content = request.form['content'].replace("'","''").replace('\n','<br>')
     date = datetime.datetime.today().date()
-    print(date)
-    cursor.execute("INSERT INTO comments (movie,user,content,date) VALUES("+str(id_movie)+","+str(user.id)+",'"+content+"'," + str(date) + ")")
+    split_date = str(date).split('-')
+    date = split_date[2]+'-'+split_date[1]+'-'+split_date[0]
+    cursor.execute("INSERT INTO comments (movie,user,content,date) VALUES("+str(id_movie)+","+str(user.id)+",'"+content+"','" + str(date) + "')")
     connection.commit()
     connection.close()
     return redirect("/movie/"+str(id_movie))
@@ -82,13 +84,17 @@ def postMovieMethod():
     title = request.form['title'].replace("'","''")
     realisator = request.form['realisator'].replace("'","''")
     date = request.form['date']
+    split_date = str(date).split('-')
+    date = split_date[2]+'-'+split_date[1]+'-'+split_date[0]
     duration = request.form['duration']
     image_path = "/static/movies/%s" % request.form['image_path']
     genres = request.form['genres']
     resum = request.form['resum'].replace("'","''").replace('\n','<br>')
-    req = "INSERT INTO movies (title, realisator, date, duration, image_path, genres, resum, resum_author) VALUES "
-    req+= "('" + title + "','" + realisator + "'," + str(date) + "," + str(duration) + ",'" + image_path + "','" + genres + "','" + resum + "'," + str(user.id) + ");"
-    print(req)
+    creation_date = datetime.datetime.today().date()
+    split_date = str(creation_date).split('-')
+    creation_date = split_date[2]+'-'+split_date[1]+'-'+split_date[0]
+    req = "INSERT INTO movies (title, realisator, date, duration, image_path, genres, resum, resum_author, creation_date) VALUES "
+    req+= "('" + title + "','" + realisator + "','" + str(date) + "'," + str(duration) + ",'" + image_path + "','" + genres + "','" + resum + "'," + str(user.id) + ",'" + creation_date + "');"
     cursor.execute(req)
     connection.commit()
     req = "SELECT id FROM movies WHERE resum_author ="+str(user.id)+" AND title ='"+title+"' AND resum ='"+resum+"';"

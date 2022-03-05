@@ -27,7 +27,7 @@
             </div>
             <img src="{{movie.image_path}}" alt="" height="500px" width="300px">
         </div>
-        <p class = "post-author">{{"Résumé écrit par " ~ movie.resum_author}}</p>
+        <p class = "post-author">{{"Résumé écrit par " ~ movie.resum_author ~ " le " ~ movie.creation_date}}</p>
     </div>
     {%if connectedAs != None%}
     <form id="comment-form" action="/comment" method="POST">
