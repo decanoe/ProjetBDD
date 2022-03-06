@@ -1,4 +1,4 @@
-from app import startConnection
+"""from app import startConnection
 import random
 
 posts = [
@@ -27,4 +27,4 @@ def Remake_All_Posts():
     connection.close()
 
 
-Remake_All_Posts()
+Remake_All_Posts()"""

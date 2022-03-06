@@ -75,8 +75,8 @@ body a:hover{
     max-width: 800px;
     width: 60%;
     margin: auto;
-    position: relative;
 }
+
 
 /* ------------Forms------------ */
 
@@ -163,6 +163,7 @@ textarea{
 #body-container{
     display: flex;
 }
+
 .diaporama {
     animation: slide 17s ease infinite 0s;
     width: 700%;
@@ -263,3 +264,4 @@ textarea{
 #input-title{
     width: 100%;
 }
+
