@@ -237,12 +237,14 @@ textarea{
 #resum{
     display: flex;
     align-items: start;
+    justify-content: space-between;
 }
 
 #resum img{
     max-width: 150px;
     max-height: 250px;
 }
+
 
 #resum-text{
     display: block;

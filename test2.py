@@ -4,6 +4,6 @@ from app import startConnection
 connection = startConnection("database.db")
 cur = connection.cursor()
 
-req = "UPDATE users SET email = 'erwan.legrand49@gmail.com' WHERE id = 1"
+req = "DELETE FROM movies WHERE id = 24 OR id = 25"
 cur.execute(req)
 connection.commit()

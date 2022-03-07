@@ -5,6 +5,8 @@ from pythonClass.movie import Movie
 from pythonClass.comment import Comment
 from pythonClass.user import User
 import datetime
+from werkzeug.utils import secure_filename
+import os
 
 main = Blueprint('main', __name__)
 
@@ -87,7 +89,10 @@ def postMovieMethod():
     split_date = str(date).split('-')
     date = split_date[2]+'-'+split_date[1]+'-'+split_date[0]
     duration = request.form['duration']
-    image_path = "/static/movies/%s" % request.form['image_path']
+    file = request.files['image']
+    filename = secure_filename(file.filename)
+    image_path = "/static/movies/"+filename
+    file.save(os.path.join('static/movies', filename))
     genres = request.form['genres']
     resum = request.form['resum'].replace("'","''").replace('\n','<br>')
     creation_date = datetime.datetime.today().date()
