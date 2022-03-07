@@ -145,8 +145,8 @@ textarea{
 #slider{
     width: 300px;
     overflow-x: hidden;
+    margin-top: 5%;
     margin-inline: auto;
-    margin-top: 10%;
     border-radius: 20px;
     height:min-content;
 }
@@ -154,8 +154,8 @@ textarea{
 #slider2{
     width: 300px;
     overflow-x: hidden;
+    margin-top: 5%;
     margin-inline: auto;
-    margin-top: 10%;
     border-radius: 20px;
     height:min-content;
 }
