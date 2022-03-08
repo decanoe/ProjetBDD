@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .nav-links #add-movie{
+      font-weight: bold;
+      color: #fff;
+    }
+</style>
+{% extends "base.html" %}
+{% block title %}Ajouter un film{% endblock %}
+<body>
+    {% block content %}
+    {% if connectedAs != None %}
+    <h2>Ajouter un film</h2>
+    <form id="post-form" action="/postMovie" method="POST" enctype="multipart/form-data">
+        <div><input type="text" id="title" name="title" minlength=1 required placeholder="Titre du post"/></div>
+        <div><input type="text" id="realisator" name="realisator" minlength=1 required placeholder="Réalisateur"/></div>
+        <div><input type="date" id="date" name="date" minlength=1 required placeholder="date"/></div>
+        <div><input type="number" id="duration" name="duration" minlength=1 required placeholder="durée (en min)"/></div>
+        <div><input type="text" id="genres" name="genres" minlength=1 required placeholder="genres"/></div>
+        <div><textarea name="resum" minlength=1 required placeholder="Résumé du film" spellcheck="true"></textarea></div>
+        <div><label for="image">Importer une image du film  </label><input id="input-image" type = "file" name = "image" accept="image/*"/></div>
+        <div><input type="submit" name= "form" value="Ajouter le film" class="form-submit"/></div>
+    </form>
+    {% else %}
+    <p><a href="/login" class="blue-link">Connectez-vous</a> pour créer un post.</p>
+    {% endif %}
+    {% endblock %}
+</body>
+</html>

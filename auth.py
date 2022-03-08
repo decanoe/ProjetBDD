@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, redirect
 from app import startConnection
 from pythonClass.user import User
 
@@ -32,7 +32,7 @@ def loginMethod():
 def signup():
     return render_template("signup.html", connectedAs = connectedAs)
 
-@auth.route('/signupMethod', methods=['POST'])
+@auth.route('/signup', methods=['POST'])
 def signupMethod():
     login = request.form['login'].replace("'","''")
     password = request.form['password'].replace("'","''")
@@ -70,7 +70,7 @@ def signupMethod():
         cur.execute("INSERT INTO users (login,password,email,age) VALUES ('" + login + "','" + password + "','" + email + "'," + str(age) + ");")
         connection.commit()
         connection.close()
-        return render_template("profile.html", connectedAs = connectedAs)
+        return redirect("/login")
 
 @auth.route('/logout')
 def logout():

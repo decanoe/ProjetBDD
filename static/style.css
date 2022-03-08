@@ -24,10 +24,10 @@ body a:hover{
 }
 
 #footer{
-    position: fixed;
+    position: relative;
     bottom: 0%;
     width: 100%;
-    padding-top: 50px;
+    margin-top: 50px;
     height: 50px;
     text-align: center;
 }
@@ -75,8 +75,8 @@ body a:hover{
     max-width: 800px;
     width: 60%;
     margin: auto;
-    position: relative;
 }
+
 
 /* ------------Forms------------ */
 
@@ -143,49 +143,52 @@ textarea{
 
 /*------------diapo auto-------------*/
 #slider{
-    width: 20%;
-    height: 50%;
-    position: fixed;
-    left: 5%;
-    top: 20%;
+    width: 300px;
     overflow-x: hidden;
+    margin-top: 5%;
+    margin-inline: auto;
     border-radius: 20px;
+    height:min-content;
 }
 
 #slider2{
-    width: 20%;
-    height: 50%;
-    position: fixed;
-    right: 5%;
-    top: 20%;
+    width: 300px;
     overflow-x: hidden;
+    margin-top: 5%;
+    margin-inline: auto;
     border-radius: 20px;
+    height:min-content;
 }
 
+#body-container{
+    display: flex;
+}
 
 .diaporama {
     animation: slide 17s ease infinite 0s;
     width: 700%;
     position: sticky;
   }
+
+
   @keyframes slide {
     0%, 12%, 100% {
       transform: translate(0,0);
     }
     16%, 28% {
-      transform: translate(-20%,0);
+      transform: translate(-300px,0);
     }
     32%, 44% {
-      transform: translate(-40%,0);
+      transform: translate(-605px,0);
     }
     48%, 60% {
-      transform: translate(-60%,0);
+      transform: translate(-910px,0);
     }
     64%, 76% {
-      transform: translate(-80%,0);
+      transform: translate(-1215px,0);
     }
     80%, 92% {
-      transform: translate(-100%,0);
+      transform: translate(-1520px,0);
     }
     96%, 100%{
         transform: translate(0,0);
@@ -231,7 +234,21 @@ textarea{
     width: 100%;
     margin-bottom: 1em;
 }
+#resum{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+}
 
+#resum img{
+    max-width: 150px;
+    max-height: 250px;
+}
+
+
+#resum-text{
+    display: block;
+}
 #post:hover{
 	color: #a9a9b3;
     background-color: #2B2D42;
@@ -249,3 +266,4 @@ textarea{
 #input-title{
     width: 100%;
 }
+

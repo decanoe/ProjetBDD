@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .nav-links #forum{
+        font-weight: bold;
+        color: #fff;
+    }
+</style>
+{% extends "base.html" %}
+{% block title %}Movie{% endblock %}
+<body>
+    {% block content %}
+    <br>
+    <div class="post-container">
+        <h2>{{movie.title}}</h2>
+        <div id="resum">
+            <div id="resum-text">
+                {% autoescape false  %}
+                <p>{{movie.resum}}</p>
+                {% endautoescape %}
+                <div id="film-info">
+                    <p>Réalisateur : {{movie.realisator}}</p>
+                    <p>Date de sortie : {{movie.date}}</p>
+                    <p>Genre du film : {{movie.genres}}</p>
+                    <p>Durée du film : {{movie.duration}} minutes</p>
+                </div>
+            </div>
+            <img src="{{movie.image_path}}" alt="" height="500px" width="300px">
+        </div>
+        <p class = "post-author">{{"Résumé écrit par " ~ movie.resum_author ~ " le " ~ movie.creation_date}}</p>
+    </div>
+    {%if connectedAs != None%}
+    <form id="comment-form" action="/comment" method="POST">
+        <div><textarea name="content" minlength=1 required placeholder="Écrire un commentaire"></textarea></div>
+        <div><input type="submit" name= "form" value="Poster le commentaire" class="form-submit"/></div>
+        <input type="hidden" name="id_movie" value={{movie.id}}>
+    </form>
+    {% else %}
+    <p><a href="/login" class="blue-link">Connectez-vous</a> pour commenter ce post.</p>
+    {% endif %}
+    <br>
+    {% if list_comment != [] %}
+    <div class="post-container">
+        <table>
+            {% for comment in list_comment %}
+            <div id="comments">
+                {% autoescape false %}
+                <p id="comment_content">{{comment.content}}</p>
+                {% endautoescape %}
+                <p class="post-author"> {{"écrit par " ~ comment.user}} le {{comment.date}}</p>
+            </div>
+            <div class="border"></div>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+    {% endblock %}
+</body>
+</html>
