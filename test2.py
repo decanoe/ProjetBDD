@@ -4,6 +4,6 @@ from app import startConnection
 connection = startConnection("database.db")
 cur = connection.cursor()
 
-req = "DELETE FROM movies WHERE id = 27 OR id = 28"
+req = "DELETE FROM comments WHERE user>2 AND user <> 14"
 cur.execute(req)
 connection.commit()

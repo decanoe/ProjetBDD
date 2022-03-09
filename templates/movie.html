@@ -46,8 +46,8 @@
             <div id="comments">
                 {% autoescape false %}
                 <p id="comment_content">{{comment.content}}</p>
+                <p class="post-author">écrit par <a style=text-decoration:underline href={{"/profile/" ~ comment.user_id}}>{{comment.login}}</a> le {{comment.date}}</p>
                 {% endautoescape %}
-                <p class="post-author"> {{"écrit par " ~ comment.user}} le {{comment.date}}</p>
             </div>
             <div class="border"></div>
             {% endfor %}

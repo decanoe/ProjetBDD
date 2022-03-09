@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-    .nav-links #profile{
-      font-weight: bold;
-      color: #fff;
-    }
-</style>
 {% extends "base.html" %}
 {% block title %}Mon compte {% endblock %}
 <body>
     {% block content %}
+    {% if connectedAs.id == user.id %}
+    <style>
+        .nav-links #profile{
+          font-weight: bold;
+          color: #fff;
+        }
+    </style>
     <h2>Mon compte</h2>
     <div class="connected">
         <h4 id="connected-msg">Connecté en tant que {{connectedAs.login}}</h4>
         <p>email : {{connectedAs.email}}</p>
-        <p>age : {{connectedAs.age}}</p>
+        <p>âge : {{connectedAs.age}} ans</p>
+        <p>nombre de commentaires postés: {{nComment}}</p>
     </div>
+    {% else %}
+    <h2>Compte de {{user.login}}</h2>
+    <div class="connected">
+        <p>âge : {{user.age}} ans</p>
+        <p>nombre de commentaires postés: {{nComment}}</p>
+    </div>
+    {% endif %}
     {% endblock %}
 </body>
 </html>

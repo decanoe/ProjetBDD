@@ -15,11 +15,17 @@ def index():
     from auth import connectedAs as user
     return render_template("index.html", connectedAs = user)
 
-@main.route('/profile')
-def profile():
-    from auth import connectedAs as user
-    print(user)
-    return render_template("profile.html", connectedAs = user)
+@main.route('/profile/<int:id_user>')
+def profile(id_user):
+    connection = startConnection("database.db")
+    cur = connection.cursor()
+    cur.execute("SELECT * FROM users WHERE id = " + str(id_user) + ";")
+    result = cur.fetchone()
+    user = User(result[0], result[1], result[2], result[3], result[4])
+    cur.execute("SELECT COUNT(*) FROM comments WHERE user = " + str(id_user) + ";")
+    nComment = cur.fetchone()[0]
+    from auth import connectedAs
+    return render_template("profile.html", connectedAs = connectedAs, user = user, nComment = nComment)
 
 @main.route('/forum')
 def forum():
@@ -27,8 +33,8 @@ def forum():
     cursor = connection.cursor()
 
     list_movie = []
-    for result in cursor.execute("SELECT * FROM movies").fetchall():
-        list_movie.append(Movie(result[0], result[1], result[2], result[3], result[5], result[5], result[6], result[7], result[8], result[9]))
+    for result in cursor.execute("SELECT movies.id, title, realisator, date, duration, image_path, genres, resum, login, users.id, creation_date FROM movies JOIN users ON users.id = movies.resum_author").fetchall():
+        list_movie.append(Movie(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10]))
 
     from auth import connectedAs as user
     return render_template("forum.html", list_movie = list_movie, connectedAs = user)
@@ -48,12 +54,12 @@ def resetData():
 def MoviePage(id_movie):
     connection = startConnection("database.db")
     cursor = connection.cursor()
-    result = cursor.execute("SELECT movies.id, title, realisator, date, duration, image_path, genres, resum, login, creation_date  FROM movies JOIN users ON users.id = movies.resum_author WHERE movies.id="+str(id_movie)+";").fetchone()
-    movie = Movie(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9])
-    result = cursor.execute("SELECT movie, login, content, date FROM comments JOIN users ON users.id = comments.user WHERE movie="+str(id_movie)+";").fetchall()
+    result = cursor.execute("SELECT movies.id, title, realisator, date, duration, image_path, genres, resum, login, users.id, creation_date  FROM movies JOIN users ON users.id = movies.resum_author WHERE movies.id="+str(id_movie)+";").fetchone()
+    movie = Movie(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10])
+    result = cursor.execute("SELECT movie, login, users.id, content, date FROM comments JOIN users ON users.id = comments.user WHERE movie="+str(id_movie)+";").fetchall()
     list_comment = []
     for comment in result:
-        list_comment.append(Comment(comment[0],comment[1],comment[2],comment[3]))
+        list_comment.append(Comment(comment[0],comment[1],comment[2],comment[3], comment[4]))
 
     from auth import connectedAs as user
     return render_template("movie.html", movie = movie, list_comment = list_comment, connectedAs = user)

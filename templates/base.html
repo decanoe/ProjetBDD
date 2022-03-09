@@ -20,15 +20,15 @@
             <li><a href="/login" id="login">Se connecter</a></li>
             <li><a href="/signup" id="signup">Créer Mon Compte</a></li>
             {%else%}
-            <li><a href="/profile" id="profile">Mon compte</a></li>
+            <li><a href={{"/profile/" ~ connectedAs.id}} id="profile">Mon compte</a></li>
             <li><a href="/postMovie" id="add-movie">Ajouter un film</a></li>
             <li><p>|</p></li>
             <div id="account">
-                <a href="/profile"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                <a href={{"/profile/" ~ connectedAs.id}}><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                     width="30" height="30"
                     viewBox="0 0 172 172"
                     style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#55bde2"><path d="M89.01,11.7175c-12.65812,0.22844 -21.90312,4.00438 -27.52,11.395c-6.65156,8.76125 -7.86094,22.10469 -3.655,39.56c-1.54531,1.89469 -2.71437,4.77031 -2.2575,8.6c0.90031,7.55188 3.92375,10.68281 6.3425,11.9325c1.16906,5.96625 4.46125,12.64469 7.6325,15.8025v1.6125c0.01344,2.27094 -0.02687,4.42094 -0.1075,6.665c1.80063,3.7625 7.51156,9.675 19.995,9.675c12.5775,0 18.43625,-6.03344 20.1025,-10.2125c-0.06719,-2.06937 -0.01344,-4.03125 0,-6.1275v-1.6125c3.07719,-3.14437 6.24844,-9.83625 7.4175,-15.8025c2.48594,-1.23625 5.42875,-4.35375 6.3425,-11.9325c0.45688,-3.74906 -0.645,-6.59781 -2.15,-8.4925c2.00219,-6.81281 6.08719,-24.55031 -0.9675,-35.905c-2.95625,-4.75687 -7.43094,-7.75344 -13.33,-8.9225c-3.25187,-4.09844 -9.48687,-6.235 -17.845,-6.235zM112.66,114.7025c-4.34031,5.01219 -12.01312,9.1375 -23.22,9.1375c-11.40844,0 -18.86625,-4.1925 -23.1125,-9.03c-3.27875,2.75469 -8.51937,4.82406 -14.2975,7.095c-13.4375,5.28094 -30.14031,11.81156 -31.39,32.68l-0.215,3.655h138.03l-0.215,-3.655c-1.24969,-20.86844 -17.88531,-27.39906 -31.2825,-32.68c-5.805,-2.29781 -11.03219,-4.4075 -14.2975,-7.2025z"></path></g></g></svg></a>
-                <a href="/profile" id="user">{{connectedAs.login}}</a>
+                <a href={{"/profile/" ~ connectedAs.id}} id="user">{{connectedAs.login}}</a>
             </div>
             <div id="logout">
                 <a href="/logout"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
