@@ -27,7 +27,9 @@
             </div>
             <img src="{{movie.image_path}}" alt="" height="500px" width="300px">
         </div>
-        <p class = "post-author">{{"Résumé écrit par " ~ movie.resum_author ~ " le " ~ movie.creation_date}}</p>
+        {% autoescape false %}
+        <p class="post-author">Résumé écrit par <a style=text-decoration:underline href={{"/profile/" ~ movie.resum_author_id}}>{{movie.resum_author}}</a> le {{movie.creation_date}}</p>
+        {% endautoescape %}
     </div>
     {%if connectedAs != None%}
     <form id="comment-form" action="/comment" method="POST">
