@@ -10,11 +10,13 @@ import os
 
 main = Blueprint('main', __name__)
 
+#page d'accueil
 @main.route('/')
 def index():
     from auth import connectedAs as user
     return render_template("index.html", connectedAs = user)
 
+#page profile utilisateur
 @main.route('/profile/<int:id_user>')
 def profile(id_user):
     connection = startConnection("database.db")
@@ -27,6 +29,7 @@ def profile(id_user):
     from auth import connectedAs
     return render_template("profile.html", connectedAs = connectedAs, user = user, nComment = nComment)
 
+#page forum
 @main.route('/forum')
 def forum():
     connection = startConnection("database.db")
@@ -39,6 +42,7 @@ def forum():
     from auth import connectedAs as user
     return render_template("forum.html", list_movie = list_movie, connectedAs = user)
 
+#fonction pour reset la table user (pas accessible depuis le site web)
 @main.route('/resetData', methods=['POST'])
 def resetData():
     connection = startConnection("database.db")
@@ -50,6 +54,8 @@ def resetData():
     from auth import connectedAs as user
     return render_template("index.html", message = "La table users a été reset", connectedAs = user)
 
+
+#page film
 @main.route('/movie/<int:id_movie>')
 def MoviePage(id_movie):
     connection = startConnection("database.db")
@@ -64,6 +70,7 @@ def MoviePage(id_movie):
     from auth import connectedAs as user
     return render_template("movie.html", movie = movie, list_comment = list_comment, connectedAs = user)
 
+#poster un commentaire
 @main.route("/comment", methods=["POST"])
 def comment():
     from auth import connectedAs as user
@@ -79,11 +86,13 @@ def comment():
     connection.close()
     return redirect("/movie/"+str(id_movie))
 
+#page avec les formulaires pour ajouter un film
 @main.route('/postMovie')
 def postMovie():
     from auth import connectedAs as user
     return render_template("postMovie.html", connectedAs = user)
 
+#ajout du film à la base de donnée
 @main.route("/postMovie", methods=["POST"])
 def postMovieMethod():
     from auth import connectedAs as user

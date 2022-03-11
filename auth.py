@@ -6,10 +6,12 @@ auth = Blueprint('auth', __name__)
 
 connectedAs = None
 
+#page pour se connecter
 @auth.route('/login')
 def login():
     return render_template("login.html", connectedAs = connectedAs)
 
+#vérification de l'identifiants et du mot de passe dans la base de donnée
 @auth.route('/loginMethod', methods=['POST'])
 def loginMethod():
     login = request.form['login']
@@ -28,11 +30,12 @@ def loginMethod():
     else:
         return render_template("login.html", message = "Identifiant ou mot de passe incorrect", connectedAs = connectedAs)
 
-
+#page pour créer son compte
 @auth.route('/signup')
 def signup():
     return render_template("signup.html", connectedAs = connectedAs)
 
+#vérifications du remplissage des formulaires puis ajout des informations du nouveau compte dans la BDD
 @auth.route('/signup', methods=['POST'])
 def signupMethod():
     login = request.form['login'].replace("'","''")
@@ -73,6 +76,7 @@ def signupMethod():
         connection.close()
         return redirect("/login")
 
+#se déconnecter
 @auth.route('/logout')
 def logout():
     global connectedAs

@@ -2,6 +2,8 @@ import sqlite3
 from sqlite3 import Error
 from flask import Flask
 
+
+#créer l'application web
 def create_app():
     app = Flask(__name__)
     app.config['UPLOAD_FOLDER'] = 'static/movies'
@@ -16,6 +18,7 @@ def create_app():
 
     return app
 
+#fonction qui permet de se connecter une base de donnée
 def startConnection(path):
     connect = None
     try:
@@ -25,19 +28,20 @@ def startConnection(path):
 
     return connect
 
-#connection = startConnection("database.db")
-#cur = connection.cursor()
+"""
+juste au cas où :
 
-#cur.execute('DROP TABLE comments')
-#cur.execute('CREATE TABLE users ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "login" TEXT UNIQUE NOT NULL, "password" TEXT NOT NULL, "email" TEXT UNIQUE NOT NULL, "age" INTEGER NOT NULL)')
-#cur.execute('CREATE TABLE movies ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "title" TEXT NOT NULL, "realisator" TEXT NOT NULL, "date" DATE, "duration" INTEGER, "image_path" TEXT NOT NULL, "genres" TEXT NOT NULL, "resum" TEXT NOT NULL, "resum_author" INTGER NOT NULL, FOREIGN KEY("resum_author") REFERENCES "users"("id"))')
-#cur.execute('CREATE TABLE comments ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "movie" INTEGER, "user" INTEGER, "content" TEXT NOT NULL, "date" DATE, FOREIGN KEY("user") REFERENCES "users"("id"), FOREIGN KEY("movie") REFERENCES "movies"("id"))')
-#connection.commit()
-'''
-cur.execute('SELECT * FROM users')
+connection = startConnection("database.db")
+cur = connection.cursor()
 
-for row in cur.fetchall():
-	print(row)'''
+cur.execute('DROP TABLE comments')
+cur.execute('CREATE TABLE users ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "login" TEXT UNIQUE NOT NULL, "password" TEXT NOT NULL, "email" TEXT UNIQUE NOT NULL, "age" INTEGER NOT NULL)')
+cur.execute('CREATE TABLE movies ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "title" TEXT NOT NULL, "realisator" TEXT NOT NULL, "date" DATE, "duration" INTEGER, "image_path" TEXT NOT NULL, "genres" TEXT NOT NULL, "resum" TEXT NOT NULL, "resum_author" INTGER NOT NULL, FOREIGN KEY("resum_author") REFERENCES "users"("id"))')
+cur.execute('CREATE TABLE comments ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "movie" INTEGER, "user" INTEGER, "content" TEXT NOT NULL, "date" DATE, FOREIGN KEY("user") REFERENCES "users"("id"), FOREIGN KEY("movie") REFERENCES "movies"("id"))')
+connection.commit()"""
+
+
+#lancer l'application web
 
 if __name__ == "__main__":
     create_app().run(debug=True)
