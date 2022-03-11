@@ -1,6 +1,8 @@
+from hashlib import sha3_256
 from flask import Blueprint, render_template, request, redirect
 from app import startConnection
 from pythonClass.user import User
+from passlib.hash import sha256_crypt
 
 auth = Blueprint('auth', __name__)
 
@@ -15,14 +17,14 @@ def login():
 @auth.route('/loginMethod', methods=['POST'])
 def loginMethod():
     login = request.form['login']
-    password = request.form['password']
+    password =  request.form['password']
 
     connection = startConnection("database.db")
     cur = connection.cursor()
-    cur.execute('SELECT * FROM users WHERE login = "' + login + '" AND password = "' + password + '";')
+    cur.execute('SELECT * FROM users WHERE login = "' + login + '";')
     result = cur.fetchone()
     connection.close()
-    if result != None:
+    if result != None and sha256_crypt.verify(password, result[2]):
         global connectedAs
         connectedAs = User(result[0], result[1], result[2], result[3], result[4])
         from main import profile
@@ -39,12 +41,14 @@ def signup():
 @auth.route('/signup', methods=['POST'])
 def signupMethod():
     login = request.form['login'].replace("'","''")
-    password = request.form['password'].replace("'","''")
+    password = request.form['password']
     email = request.form['email'].replace("'","''")
     age = request.form['age']
 
     connection = startConnection("database.db")
     cur = connection.cursor()
+    
+    global connectedAs
 
     #Test for empty fields
     if login == "" or password == "" or email == "" or age == "":
@@ -71,10 +75,15 @@ def signupMethod():
         return render_template("signup.html", message = text, connectedAs = connectedAs)
     
     else:
-        cur.execute("INSERT INTO users (login,password,email,age) VALUES ('" + login + "','" + password + "','" + email + "'," + str(age) + ");")
+        cur.execute("INSERT INTO users (login,password,email,age) VALUES ('" + login + "','" + sha256_crypt.encrypt(password) + "','" + email + "'," + str(age) + ");")
+        
+        cur.execute('SELECT * FROM users WHERE login = "' + login + '";')
+        result = cur.fetchone()
+        connectedAs = User(result[0], result[1], result[2], result[3], result[4])
+
         connection.commit()
         connection.close()
-        return redirect("/login")
+        return redirect("/profile/" + str(connectedAs.id))
 
 #se déconnecter
 @auth.route('/logout')
