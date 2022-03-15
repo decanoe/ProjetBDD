@@ -1,10 +1,9 @@
 from flask import Blueprint, render_template, redirect, request
-import numpy
 from app import startConnection
 from pythonClass.movie import Movie
 from pythonClass.comment import Comment
 from pythonClass.user import User
-from pythonClass.roundNote import roundNote
+from pythonClass.roundNote import roundNote, moyTuple
 import datetime
 from werkzeug.utils import secure_filename
 import os
@@ -123,7 +122,7 @@ def MoviePage(id_movie):
     req = "SELECT note FROM notes WHERE id_film = " + str(movie.id)
     notes = cursor.execute(req).fetchall()
     if notes != []:
-        moyenne = roundNote(numpy.mean(notes))
+        moyenne = roundNote(moyTuple(notes))
     else:
         moyenne = None
     

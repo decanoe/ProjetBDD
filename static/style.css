@@ -278,7 +278,7 @@ textarea{
 .rating a {
     color: #aaa;
     text-decoration: none;
-    font-size: 3em;
+    font-size: 2em;
     transition: color .4s;
  }
 .rating a:hover,
@@ -291,6 +291,6 @@ textarea{
 
 .star{
     color: orange;
-    font-size: 1em;
+    font-size: 1.5em;
     text-decoration: none;
 }
