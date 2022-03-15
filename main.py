@@ -1,5 +1,5 @@
-from posixpath import split
 from flask import Blueprint, render_template, redirect, request
+import numpy
 from app import startConnection
 from pythonClass.movie import Movie
 from pythonClass.comment import Comment
@@ -54,22 +54,6 @@ def resetData():
     from auth import connectedAs as user
     return render_template("index.html", message = "La table users a été reset", connectedAs = user)
 
-
-#page film
-@main.route('/movie/<int:id_movie>')
-def MoviePage(id_movie):
-    connection = startConnection("database.db")
-    cursor = connection.cursor()
-    result = cursor.execute("SELECT movies.id, title, realisator, date, duration, image_path, genres, resum, login, users.id, creation_date  FROM movies JOIN users ON users.id = movies.resum_author WHERE movies.id="+str(id_movie)+";").fetchone()
-    movie = Movie(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10])
-    result = cursor.execute("SELECT movie, login, users.id, content, date FROM comments JOIN users ON users.id = comments.user WHERE movie="+str(id_movie)+";").fetchall()
-    list_comment = []
-    for comment in result:
-        list_comment.append(Comment(comment[0],comment[1],comment[2],comment[3], comment[4]))
-
-    from auth import connectedAs as user
-    return render_template("movie.html", movie = movie, list_comment = list_comment, connectedAs = user)
-
 #poster un commentaire
 @main.route("/comment", methods=["POST"])
 def comment():
@@ -120,4 +104,45 @@ def postMovieMethod():
     req = "SELECT id FROM movies WHERE resum_author ="+str(user.id)+" AND title ='"+title+"' AND resum ='"+resum+"';"
     id_movie = cursor.execute(req).fetchone()[0]
     connection.close()
+    return redirect("/movie/"+str(id_movie))
+
+#page film
+@main.route('/movie/<int:id_movie>')
+def MoviePage(id_movie):
+    connection = startConnection("database.db")
+    cursor = connection.cursor()
+    result = cursor.execute("SELECT movies.id, title, realisator, date, duration, image_path, genres, resum, login, users.id, creation_date  FROM movies JOIN users ON users.id = movies.resum_author WHERE movies.id="+str(id_movie)+";").fetchone()
+    movie = Movie(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10])
+    
+    result = cursor.execute("SELECT movie, login, users.id, content, date FROM comments JOIN users ON users.id = comments.user WHERE movie="+str(id_movie)+";").fetchall()
+    list_comment = []
+    for comment in result:
+        list_comment.append(Comment(comment[0],comment[1],comment[2],comment[3], comment[4]))
+    
+    req = "SELECT note FROM notes WHERE id_film = " + str(movie.id)
+    notes = cursor.execute(req).fetchall()
+    if notes != []:
+        moyenne = numpy.mean(notes)
+    else:
+        moyenne = None
+    
+    from auth import connectedAs as user
+    return render_template("movie.html", movie = movie, list_comment = list_comment, connectedAs = user, moyenne = moyenne)
+
+@main.route('/movie/<int:id_movie>/<int:note>')
+def addNote(id_movie,note):
+    note = max(min(note, 5), 0)
+    from auth import connectedAs as user
+
+    connection = startConnection("database.db")
+    cursor = connection.cursor()
+    result = cursor.execute("SELECT COUNT(*) FROM notes WHERE user = " + str(user.id) + " AND id_film = " + str(id_movie) + ";").fetchone()[0]
+    if result == 0:
+        cursor.execute("INSERT INTO notes (user,id_film,note) VALUES (" + str(user.id) + ", " + str(id_movie) + ", " + str(note) + ");")
+    else:
+        cursor.execute("UPDATE notes SET note =" + str(note) + " WHERE user = " + str(user.id) + " AND id_film = " + str(id_movie) + ";")
+    
+    connection.commit()
+    connection.close()
+
     return redirect("/movie/"+str(id_movie))
