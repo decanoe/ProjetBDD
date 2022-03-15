@@ -288,3 +288,9 @@ textarea{
     color: orange;
     cursor: pointer;
 }
+
+.star{
+    color: orange;
+    font-size: 1em;
+    text-decoration: none;
+}
