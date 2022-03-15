@@ -15,7 +15,13 @@ a{
 .blue-link {
     color: #a9a9b3;
     text-decoration: none;
-    color: #55bde2;
+    color: #0095f6;
+}
+
+.blue-link:hover {
+    color: #a9a9b3;
+    text-decoration: none;
+    color: #6bc4ff;
 }
 
 body a:hover{
@@ -24,7 +30,6 @@ body a:hover{
 }
 
 #footer{
-    position: relative;
     bottom: 0%;
     width: 100%;
     margin-top: 50px;
@@ -39,7 +44,7 @@ body a:hover{
 
 .sticky-header{
     background-color: #6a040f;
-    /* background-color: #252627; */
+    box-shadow: 0px 0px 30px rgb(0 0 0 / 50%);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -145,8 +150,8 @@ textarea{
 #slider{
     width: 300px;
     overflow-x: hidden;
+    margin-top: 5%;
     margin-inline: auto;
-    margin-top: 10%;
     border-radius: 20px;
     height:min-content;
 }
@@ -154,8 +159,8 @@ textarea{
 #slider2{
     width: 300px;
     overflow-x: hidden;
+    margin-top: 5%;
     margin-inline: auto;
-    margin-top: 10%;
     border-radius: 20px;
     height:min-content;
 }
@@ -237,6 +242,7 @@ textarea{
 #resum{
     display: flex;
     align-items: start;
+    justify-content: space-between;
 }
 
 #resum img{
@@ -244,21 +250,22 @@ textarea{
     max-height: 250px;
 }
 
+
 #resum-text{
     display: block;
 }
 #post:hover{
-	color: #a9a9b3;
-    background-color: #2B2D42;
+	color: #35373a;
+    background-color: #a9a9b3;
 	transition:color,background-color;
-    transition-duration:0.5s,0.5s;
+    transition-duration:0.3s,0.3s;
     cursor: pointer;
 }
 #post:not(:hover){
 	color: #a9a9b3;
     background-color: #35373a;
 	transition:color, background-color;
-	transition-duration:0.5s,0.5s;
+	transition-duration:0.3s,0.3s;
 }
 
 #input-title{
