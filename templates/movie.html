@@ -24,6 +24,9 @@
                     <p>Genre du film : {{movie.genres}}</p>
                     <p>Durée du film : {{movie.duration}} minutes</p>
                 </div>
+                {% if moyenne != None %}
+                <p>{{moyenne}}/5☆</p>
+                {% endif %}
             </div>
             <img src="{{movie.image_path}}" alt="" height="500px" width="300px">
         </div>
@@ -32,6 +35,13 @@
         {% endautoescape %}
     </div>
     {%if connectedAs != None%}
+    <div class="rating">
+        <a href={{"/movie/" ~ movie.id ~ "/5"}} title="Donner 5 étoiles">☆</a>
+        <a href={{"/movie/" ~ movie.id ~ "/4"}} title="Donner 4 étoiles">☆</a>
+        <a href={{"/movie/" ~ movie.id ~ "/3"}} title="Donner 3 étoiles">☆</a>
+        <a href={{"/movie/" ~ movie.id ~ "/2"}} title="Donner 2 étoiles">☆</a>
+        <a href={{"/movie/" ~ movie.id ~ "/1"}} title="Donner 1 étoile">☆</a>
+    </div>
     <form id="comment-form" action="/comment" method="POST">
         <div><textarea name="content" minlength=1 required placeholder="Écrire un commentaire"></textarea></div>
         <div><input type="submit" name= "form" value="Poster le commentaire" class="form-submit"/></div>
