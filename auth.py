@@ -69,6 +69,11 @@ def signupMethod():
         text ="Votre mot de passe est trop long (max 30 caractères). "
         return render_template("signup.html", message = text, connectedAs = connectedAs)
     
+    # --- âge ---
+    elif int(age) <=0:
+        text ="Votre âge me semble douteux !"
+        return render_template("signup.html", message = text, connectedAs = connectedAs)
+    
     # --- email ---
     elif cur.execute('SELECT email FROM users WHERE email = "' + email + '";').fetchone() != None:
         text = "Cette adresse email est déjà utilisée"
