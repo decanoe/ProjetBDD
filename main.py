@@ -38,9 +38,12 @@ def forum():
     list_movie = []
     for result in cursor.execute("SELECT movies.id, title, realisator, date, duration, image_path, genres, resum, login, users.id, creation_date FROM movies JOIN users ON users.id = movies.resum_author").fetchall():
         list_movie.append(Movie(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10]))
-
+    reals = []
+    for real in cursor.execute("SELECT DISTINCT realisator FROM movies").fetchall():
+        reals.append(real[0])
+        
     from auth import connectedAs as user
-    return render_template("forum.html", list_movie = list_movie, connectedAs = user)
+    return render_template("forum.html", list_movie = list_movie, connectedAs = user, reals = reals)
 
 #fonction pour reset la table user (pas accessible depuis le site web)
 @main.route('/resetData', methods=['POST'])
@@ -118,7 +121,7 @@ def MoviePage(id_movie):
     list_comment = []
     for comment in result:
         list_comment.append(Comment(comment[0],comment[1],comment[2],comment[3], comment[4]))
-    
+    list_comment.reverse()
     req = "SELECT note FROM notes WHERE id_film = " + str(movie.id)
     notes = cursor.execute(req).fetchall()
     if notes != []:
