@@ -294,3 +294,8 @@ textarea{
     font-size: 1.5em;
     text-decoration: none;
 }
+
+#comments{
+    border-left: #a9a9b3 0.25em solid;
+    padding-left: 1em;
+}
