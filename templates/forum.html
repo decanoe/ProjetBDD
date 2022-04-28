@@ -11,24 +11,22 @@
 <body>
     {% block content %}
     <h2>Le forum CINERUM</h2>
-    <div id="filtres">
-        <label for="tri-post">Trier les films par</label>
-        <select name="tri-post" id="tri-post">
-            <option value="all">--Tous--</option>
-            <option value="note-plus">Les mieux notés</option>
-            <option value="note-moins">Les moins bien notés</option>
-            <option value="recent">Les plus récents</option>
-            <option value="anciens">Les plus anciens</option>
-            <option value="comment-plus">Les plus commentés</option>
-            <option value="comment-moins">Les moins commentés</option>
-        </select>
-        <label for="tri-realisator">Trier par réalisateurs :</label>
-        <select name="tri-realisator id="tri-post">
-            <option value="all">--Tous--</option>
-            {% for real in reals %}
-            <option value={{real}}>{{real}}</option>
-            {% endfor %}
-        </select>
+    <div id="filter">
+        <form action="/forum" method="post" id="tri-post-form">
+            <label for="tri-post">Trier les films par</label>
+            <select name="tri-post" id="tri-post">
+                {% for filter in filters %}
+                <option value={{filter}}>{{filter}}</option>
+                {% endfor %}
+            </select>
+            <label for="tri-real">Trier par réalisateurs :</label>
+            <select name="tri-real" id="tri-real">
+                {% for real in reals %}
+                <option value={{real}}>{{real}}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="submit">Valider</button>
+        </form>
     </div>
     <div class="post-container">
         {% for movie in list_movie %}

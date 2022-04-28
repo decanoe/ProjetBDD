@@ -1,3 +1,4 @@
+from warnings import filters
 from flask import Blueprint, render_template, redirect, request
 from app import startConnection
 from pythonClass.movie import Movie
@@ -34,16 +35,15 @@ def profile(id_user):
 def forum():
     connection = startConnection("database.db")
     cursor = connection.cursor()
-
     list_movie = []
     for result in cursor.execute("SELECT movies.id, title, realisator, date, duration, image_path, genres, resum, login, users.id, creation_date FROM movies JOIN users ON users.id = movies.resum_author").fetchall():
         list_movie.append(Movie(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10]))
-    reals = []
+    reals = ["Tous"]
     for real in cursor.execute("SELECT DISTINCT realisator FROM movies").fetchall():
         reals.append(real[0])
-        
+    filters = ["Tous","Les mieux notés","Les moins bien notés","Les plus récents","Les plus anciens","Les plus commentés","Les moins commentés"]
     from auth import connectedAs as user
-    return render_template("forum.html", list_movie = list_movie, connectedAs = user, reals = reals)
+    return render_template("forum.html", list_movie = list_movie, connectedAs = user, reals = reals, filters = filters)
 
 #fonction pour reset la table user (pas accessible depuis le site web)
 @main.route('/resetData', methods=['POST'])
