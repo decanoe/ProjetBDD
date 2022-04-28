@@ -12,17 +12,11 @@
     {% block content %}
     <h2>Le forum CINERUM</h2>
     <div id="filter">
-        <form action="/forum" method="post" id="tri-post-form">
-            <label for="tri-post">Trier les films par</label>
-            <select name="tri-post" id="tri-post">
-                {% for filter in filters %}
-                <option value={{filter}}>{{filter}}</option>
-                {% endfor %}
-            </select>
+        <form action="/forum/filtre" method="post" id="tri-post-form">
             <label for="tri-real">Trier par réalisateurs :</label>
             <select name="tri-real" id="tri-real">
                 {% for real in reals %}
-                <option value={{real}}>{{real}}</option>
+                <option value={{reals.index(real)}}>{{real}}</option>
                 {% endfor %}
             </select>
             <button type="submit" class="submit">Valider</button>
